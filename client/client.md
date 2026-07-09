@@ -7,12 +7,12 @@
 
 ## Creative
 <!-- The only part you write by hand. Answer what you know; skip the rest. -->
-- What makes this business better than competitors:
+- What makes this business better than competitors: Every design is custom and built exactly for the client
 - The story / why they started:
 - Ideal customer:
 - Offer / guarantee / promo:
-- Mood (3-6 adjectives):
-- Never say / avoid:
+- Mood (3-6 adjectives):Atmospheric
+- Never say / avoid:Cheap, low quality
 
 ## Vibe
 <!-- Optional. Describe the FEEL the website should have, in your own
