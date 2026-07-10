@@ -3,8 +3,9 @@ name: maps-gbp
 description: Google Maps embed + Google Business Profile alignment - map on
   the contact section, directions links, NAP consistency with GBP. Use when
   client has a physical location. Not for schema markup (seo-technical owns
-  JSON-LD, using data verified here).
-metadata: {version: 1.0.0, category: integrations, tier: D}
+  JSON-LD, using data verified here) or GBP profile optimization and review
+  generation (local-seo-gbp).
+metadata: {version: 1.0.1, category: integrations, tier: D}
 ---
 # Maps & GBP
 

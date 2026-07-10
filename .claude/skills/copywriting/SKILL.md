@@ -3,8 +3,9 @@ name: copywriting
 description: Write all website copy for a local small business - headlines,
   section copy, CTAs, about pages - in the client's voice, conversion-first,
   locally grounded. Use in pipeline Phase 3 and for copy edits. Not for
-  meta tags/schema (seo-technical) or emails.
-metadata: {version: 1.2.0, category: content, tier: A}
+  meta tags/schema (seo-technical) or marketing assets like ads, emails,
+  and scripts (copy-frameworks, persuasion-mechanics).
+metadata: {version: 1.2.1, category: content, tier: A}
 ---
 # Copywriting
 

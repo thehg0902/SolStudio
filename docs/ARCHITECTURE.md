@@ -198,13 +198,22 @@ Target: **~40 skills.** Each row is one directory under `.claude/skills/`. Items
 | `security-basics` | headers, form hardening, no-secrets rules (paired with hook) |
 | `legal-pages` | privacy policy / terms generators for CA/local-business context |
 
-### Tier F — Agency ops (not per-build; candidates for user-level or plugin, §12)
+### Tier F — Agency ops (not per-build)
 
-| Skill | Contents |
+| Skill | Contents / references |
 |---|---|
-| `proposal-writing`, `client-onboarding`, `prospecting-audit` (your demo-site cold-outreach framework), `handoff-docs` | Business-side skills. **[DESIGN]** These belong in `~/.claude/skills/` or a plugin, *not* the client template — they're agency-scoped, not project-scoped, and keeping them out of the template keeps per-project startup index smaller. |
+| `winners-writing-process` | mandatory market-research diagnostic before any marketing asset (WWP questions, awareness/sophistication, MR template, avatar, top player analysis) |
+| `persuasion-mechanics` | psychology layer: value equation, attention, desire, curiosity, trust/belief, tribal marketing |
+| `copy-frameworks` | drafting skeletons: DIC/PAS/HSO, long-form Lead/Body/Close, hooks, storytelling, refinement checklist |
+| `objections-and-closes` | aikido moves, objection bank, CTA laddering, boost stack, close library |
+| `funnel-playbooks` | Google Ads lead-gen, Meta intro-offer, organic DM funnels + selection matrix and pricing |
+| `local-seo-gbp` | GBP optimization, review generation, local rankings, SEO-vs-ads logic |
+| `cold-outreach` | WOSS frame control, cold email/DM structure, call scripts, follow-up cadence |
+| `sales-calls-and-pricing` | SPIN bank, call flow, project-math pricing, recap emails, upsells, testimonials |
 
-**Counting:** ~28 template skills + ~4–6 user-level = well under 50. Your "SEO.md, ColorTheory.md, Typography.md, GSAP.md…" examples all exist — as reference files inside the right skill, which is exactly the granularity official best practices prescribe [F10].
+**[DECIDED 2026-07-09, supersedes the earlier user-level design]** The original design placed agency-scoped skills in `~/.claude/skills/` or a plugin to keep per-project startup index smaller. Operator decision at v1.8.0: Tier F lives in the template so the skills version and sync via git with everything else. Cost: 8 extra frontmatter descriptions in every clone's startup index.
+
+**Counting:** 41 template skills = under 50. Your "SEO.md, ColorTheory.md, Typography.md, GSAP.md…" examples all exist — as reference files inside the right skill, which is exactly the granularity official best practices prescribe [F10].
 
 ---
 

@@ -1,4 +1,33 @@
 # Template Changelog
+## v1.8.0 - 2026-07-09 "The Copywriting Update"
+Eight agency-ops skills (tier F) distilled from the operator's TRW/HU
+copywriting archives, installed in the template by operator decision
+(overriding ARCHITECTURE §4's user-level suggestion; they sync via git
+with everything else):
+- winners-writing-process: mandatory market-research diagnostic before
+  any marketing asset (WWP questions, awareness/sophistication, MR
+  template, avatar, top player analysis)
+- persuasion-mechanics: psychology layer (value equation, attention,
+  desire, curiosity, trust/belief, tribal marketing)
+- copy-frameworks: drafting skeletons (DIC/PAS/HSO, long-form
+  Lead/Body/Close, hooks, storytelling, refinement checklist)
+- objections-and-closes: aikido moves, objection bank, CTA laddering,
+  boost stack, close library
+- funnel-playbooks: Google Ads lead-gen, Meta intro-offer, organic DM
+  funnels + selection matrix and pricing
+- local-seo-gbp: GBP optimization, review generation, local rankings,
+  SEO-vs-ads logic
+- cold-outreach: WOSS frame control, email/DM structure, call scripts,
+  follow-up cadence
+- sales-calls-and-pricing: SPIN bank, call flow, project-math pricing,
+  recap emails, upsells, testimonials
+Routing boundaries added both directions: copywriting 1.2.1,
+audience-research 1.0.1, seo-technical 1.1.1, maps-gbp 1.0.1 point at
+the new skills; build pipeline unchanged (agency-side skills, not
+build phases). Deliberately excluded from the source archive: INDEX.md
+(REGISTRY.md is the index) and the completed niche MRs (overlap with
+the audience-research library; distillable later as a
+niche-insights-vault if wanted).
 ## v1.7.1 - 2026-07-08
 Phase 2 gate gains a LAYOUT preview beside the style preview:
 preview/layout-preview.html - the home page as it will actually be

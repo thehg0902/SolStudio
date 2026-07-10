@@ -1,4 +1,4 @@
-# Agency OS(V1.7.1) — Website Build Template
+# Agency OS(V1.8.0) — Website Build Template
 
 Per-client workflow (2-minute setup):
 1. Clone this repo → rename to the client → point origin at the client's

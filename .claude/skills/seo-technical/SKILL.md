@@ -2,9 +2,10 @@
 name: seo-technical
 description: Technical + local SEO - titles, meta descriptions, Open Graph,
   schema.org LocalBusiness JSON-LD, sitemap.xml, robots.txt, GBP/NAP
-  consistency. Use in Phase 5 finishing pass. Not copy tone (copywriting)
-  or GBP embeds (maps-gbp).
-metadata: {version: 1.1.0, category: seo, tier: B}
+  consistency. Use in Phase 5 finishing pass. Not copy tone (copywriting),
+  GBP embeds (maps-gbp), or GBP optimization/reviews/SEO-vs-ads strategy
+  (local-seo-gbp).
+metadata: {version: 1.1.1, category: seo, tier: B}
 ---
 # SEO Technical
 

@@ -1,6 +1,6 @@
 # Agency OS — Operation Manual
 
-Last updated: v1.7.1
+Last updated: v1.8.0
 (The lint script fails if this stamp lags the CHANGELOG — every update
 must review this manual, especially the §3 phase rundown.)
 

@@ -6,9 +6,10 @@ description: Niche audience psychology library - personas, pains, deep
   med-spa, physio, chiro, paving, concrete, tree service, garage door,
   kitchen-bath reno, home builder). Use at Phase 1 (architecture) and
   Phase 3 (copy) when client.md's Target Audience section is empty or
-  thin. Not for visual direction (design-direction) or per-client facts
-  (client.md).
-metadata: {version: 1.0.0, category: process, tier: A}
+  thin. Not for visual direction (design-direction), per-client facts
+  (client.md), or per-client market-research diagnostics
+  (winners-writing-process).
+metadata: {version: 1.0.1, category: process, tier: A}
 ---
 # Audience Research
 
