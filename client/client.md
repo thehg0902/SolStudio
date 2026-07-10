@@ -25,6 +25,19 @@ We refuse to be common, we thrive for exceptionalism
      what to take from each:
      - vibe/ref-header.png: this kind of glassy nav
      - vibe/moodboard.jpg: the color feel, not the layout -->
+- vibe/ChatGPT Image Jul 9, 2026, 12_00_50 PM.png: full concept mockup —
+  deep-space/cosmic dark theme (near-black navy bg, glowing orange
+  accretion-disk hero art), tracked-out all-caps nav + pill CTA buttons,
+  two-tone gradient hero headline (white -> coral/orange), numbered
+  01-04 process row (maps to our OODA process section), orbit/ring motif
+  repeated in the logo mark and scroll indicator. Take the mood, type
+  treatment, and section rhythm — not the literal image content (it's a
+  mockup, not a shippable asset).
+- vibe/color Pallet.png: the actual brand palette to use — Void Black
+  #020814, Deep Space Navy #0D192C, Midnight Blue #1F2A45, Storm Blue
+  #354066, Dusty Indigo #596392 (dark/base scale); Muted Plum #562E48,
+  Nebula Rose #A13A48, Solar Coral #CA4E56, Accretion Orange #EA6C66,
+  Soft Peach Glow #FA9B82 (warm/accent scale).
 
 ## Target Audience
 {Paste audience research here: who they are, what they're looking for,
@@ -60,7 +73,7 @@ We refuse to be common, we thrive for exceptionalism
        People in imagery: yes | no
        Color mode: light | dark | either -->
 ### Identity & contact
-- Name:
+- Name:Sol Studio
 - Phone:
 - Email:
 - Address:

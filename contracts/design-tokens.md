@@ -1,4 +1,4 @@
-# Contract: Design Tokens  (v1.1.0)
+# Contract: Design Tokens  (v1.3.0)
 
 All visual values are CSS custom properties defined ONCE in
 `site/shared/tokens.css` on `:root`. No component may hardcode a color,
@@ -10,6 +10,8 @@ Colors:        --color-primary, --color-primary-dark, --color-accent,
                --color-bg, --color-surface, --color-text, --color-text-muted,
                --color-border, --color-success, --color-error
 Typography:    --font-heading, --font-body,
+               --font-display (v1.3.0 — hero display face, operator-directed;
+               used ONLY for the home hero headline treatment),
                --text-xs, --text-sm, --text-base, --text-lg, --text-xl,
                --text-2xl, --text-3xl, --text-hero  (rem-based modular scale)
                --leading-tight, --leading-normal, --leading-loose
@@ -19,6 +21,10 @@ Layout:        --container-max (default 1200px), --section-pad-y,
 Elevation:     --shadow-sm, --shadow-md, --shadow-lg
 Motion:        --duration-fast (150ms), --duration-base (300ms),
                --duration-slow (600ms), --ease-standard, --ease-out-expo
+Effects:       --blur-md (frosted-glass backdrop-filter over a persistent
+               fixed background media - section boundaries dim/blur it
+               rather than cutting to a solid color), --blur-lg (stronger
+               variant for surface-alternated / overlay sections)
 
 ## Rules
 1. Producer: the design-tokens skill writes `site/shared/tokens.css`.
@@ -26,3 +32,7 @@ Motion:        --duration-fast (150ms), --duration-base (300ms),
 3. Dark variants (if used) override on `[data-theme="dark"]`, same names.
 4. Adding a token = append here first (bump minor), then to tokens.css.
 5. Renaming/removing a token = breaking change (bump major). Avoid.
+6. v1.2.0 (--blur-md/--blur-lg): translucent section backgrounds use
+   color-mix(in srgb, var(--color-token) N%, transparent) - the mix
+   percentage is a layout choice, not a new color, so it stays inline
+   rather than becoming its own token.

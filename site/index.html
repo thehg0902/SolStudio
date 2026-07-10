@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sol Studio — Custom Websites, Design & Marketing</title>
+  <meta name="description" content="Sol Studio builds custom websites from your brief — no templates, no two alike. Development, design, and marketing under one roof. Book a free demo.">
+  <link rel="stylesheet" href="shared/tokens.css">
+  <link rel="stylesheet" href="shared/base.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preload" as="image" href="assets/images/hero-poster.webp">
+</head>
+<body>
+  <!-- fixed cosmic backdrop: intro-loop hero video (intro plays once, hands
+       off to the seamless loop; reduced-motion & autoplay-blocked → poster) -->
+  <div class="site-backdrop" data-intro-loop aria-hidden="true">
+    <video class="backdrop-media" data-il-loop muted playsinline preload="auto" loop>
+      <source src="assets/video/hero-loop.mp4" type="video/mp4">
+    </video>
+    <video class="backdrop-media" data-il-intro muted playsinline preload="auto" autoplay
+           poster="assets/images/hero-poster.webp">
+      <source src="assets/video/hero-intro.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <!-- ===== header (canonical — propagate edits to every page) ===== -->
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="/"><img src="assets/images/logo-mark.webp" alt="" width="36" height="36">SOL STUDIO</a>
+      <nav aria-label="Primary">
+        <ul class="nav-links">
+          <li><a href="/" aria-current="page">Home</a></li>
+          <li><a href="dev/">Development</a></li>
+          <li><a href="design/">Design</a></li>
+          <li><a href="market/">Marketing</a></li>
+        </ul>
+      </nav>
+      <a class="nav-cta" href="questionnaire/">Start the Process</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+  <div class="nav-overlay" id="navOverlay">
+    <button class="nav-overlay-close" id="navClose" aria-label="Close menu">&times;</button>
+    <a href="/">Home</a>
+    <a href="dev/">Development</a>
+    <a href="design/">Design</a>
+    <a href="market/">Marketing</a>
+    <a class="btn-outline nav-cta" href="questionnaire/">Start the Process</a>
+  </div>
+
+  <main>
+    <!-- ===== hero — cinematic launch, per the operator's reference mockup:
+         stacked all-caps display headline (gradient last line), one button,
+         tag bottom-left, scroll circle bottom-right. The video establishes
+         the scene, then the elements fade in on a timed choreography (pure
+         CSS, reduced-motion shows them instantly) ===== -->
+    <section class="hero-block" id="hero">
+      <div class="container">
+        <h1 class="hero-title"><span class="line">Design</span><span class="line">Build</span><span class="line grad">Attract</span></h1>
+        <div class="hero-actions">
+          <a class="btn-hero" href="#pillars">View My Work <span class="arrow" aria-hidden="true">&rarr;</span></a>
+        </div>
+      </div>
+      <div class="hero-tag" aria-hidden="true"><span class="tag-rule"></span>Digital Experiences</div>
+      <a class="hero-scroll" href="#process" aria-label="Scroll to our process">&darr;</a>
+    </section>
+
+    <!-- ===== process — pinned crossfade stage (steps flow in/out one at a
+         time as you scroll; each with its cosmic OODA icon) ===== -->
+    <section class="process-scroll" id="process">
+      <div class="process-stage">
+        <div class="container">
+          <span class="eyebrow">Our Process</span>
+          <h2>From first light to launch.</h2>
+          <div class="process-steps">
+            <article class="process-step">
+              <div class="process-media"><img src="assets/images/process-01.webp" alt="A glowing ringed lens gathering starlight" width="600" height="600" loading="lazy"></div>
+              <div class="process-copy">
+                <span class="process-index">01 / 04 · Observe</span>
+                <h3>We look before we leap.</h3>
+                <p>Your audience, your market, your edge — mapped in full before a single pixel is drawn. We build on what's real, not what's assumed.</p>
+              </div>
+            </article>
+            <article class="process-step">
+              <div class="process-media"><img src="assets/images/process-02.webp" alt="An orbital compass with planets aligning on a glowing orbit" width="600" height="600" loading="lazy"></div>
+              <div class="process-copy">
+                <span class="process-index">02 / 04 · Orient</span>
+                <h3>We find your angle.</h3>
+                <p>Everything we learn becomes a point of view — the positioning, the structure, and the story your site is going to tell.</p>
+              </div>
+            </article>
+            <article class="process-step">
+              <div class="process-media"><img src="assets/images/process-03.webp" alt="Light rays converging into one bright point" width="600" height="600" loading="lazy"></div>
+              <div class="process-copy">
+                <span class="process-index">03 / 04 · Decide</span>
+                <h3>We commit to one direction.</h3>
+                <p>Design, words, and motion — chosen on purpose, not by default. Nothing ships by accident.</p>
+              </div>
+            </article>
+            <article class="process-step">
+              <div class="process-media"><img src="assets/images/process-04.webp" alt="A spark rising on a launch trail from a glowing orbit ring" width="600" height="600" loading="lazy"></div>
+              <div class="process-copy">
+                <span class="process-index">04 / 04 · Act</span>
+                <h3>We build, launch, and sharpen.</h3>
+                <p>We ship the site, then measure how it performs and refine from there. Launch is the start, not the finish.</p>
+              </div>
+            </article>
+          </div>
+          <div class="process-dots" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== pillars ===== -->
+    <section class="section section--surface" id="pillars">
+      <div class="container">
+        <span class="eyebrow" data-animate>What We Do</span>
+        <h2 data-animate>Three crafts, one studio.</h2>
+        <div class="pillars-grid">
+          <a class="pillar-card" href="dev/" data-animate style="--stagger-i:0">
+            <h3>Development</h3>
+            <p>Fast, custom-coded websites built to last — no page builders, no bloat, no shortcuts.</p>
+            <span class="go">Explore Development &rarr;</span>
+          </a>
+          <a class="pillar-card" href="design/" data-animate style="--stagger-i:1">
+            <h3>Design</h3>
+            <p>Identity and interfaces with a point of view — atmospheric, deliberate, unmistakably yours.</p>
+            <span class="go">Explore Design &rarr;</span>
+          </a>
+          <a class="pillar-card" href="market/" data-animate style="--stagger-i:2">
+            <h3>Marketing</h3>
+            <p>The work doesn't stop at launch — we help the right people find you and stay.</p>
+            <span class="go">Explore Marketing &rarr;</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== cta ===== -->
+    <section class="section" id="cta">
+      <div class="container">
+        <div class="cta-band" data-animate>
+          <h2>Ready to build something rare?</h2>
+          <div class="cta-actions">
+            <a class="btn-outline" href="questionnaire/">Start the Process &rarr;</a>
+            <span class="hero-note">Book a free demo — no commitment.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== footer (canonical — propagate edits to every page) ===== -->
+  <footer class="site-footer">
+    <a class="logo" href="/"><img src="assets/images/logo-mark.webp" alt="" width="36" height="36">SOL STUDIO</a>
+    <div class="social-icons">
+      <!-- PLACEHOLDER: real profile URLs — see QUESTIONS.md (socials) -->
+      <a href="[PLACEHOLDER: Instagram URL]" aria-label="Instagram">IG</a>
+      <a href="[PLACEHOLDER: LinkedIn URL]" aria-label="LinkedIn">in</a>
+      <a href="mailto:[PLACEHOLDER: public contact email]" aria-label="Email">@</a>
+    </div>
+    <span>&copy; 2026 Sol Studio</span>
+  </footer>
+
+  <script src="shared/main.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

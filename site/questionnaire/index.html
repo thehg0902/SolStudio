@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Start the Process — Sol Studio</title>
+  <meta name="description" content="Tell us about your world and claim your free demo. A short questionnaire to start your custom project with Sol Studio.">
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/base.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="site-backdrop" aria-hidden="true"><img src="../assets/images/hero-poster.webp" alt=""></div>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="../"><img src="../assets/images/logo-mark.webp" alt="" width="36" height="36">SOL STUDIO</a>
+      <nav aria-label="Primary">
+        <ul class="nav-links">
+          <li><a href="../">Home</a></li>
+          <li><a href="../dev/">Development</a></li>
+          <li><a href="../design/">Design</a></li>
+          <li><a href="../market/">Marketing</a></li>
+        </ul>
+      </nav>
+      <a class="nav-cta" href="../questionnaire/" aria-current="page">Start the Process</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+  <div class="nav-overlay" id="navOverlay">
+    <button class="nav-overlay-close" id="navClose" aria-label="Close menu">&times;</button>
+    <a href="../">Home</a>
+    <a href="../dev/">Development</a>
+    <a href="../design/">Design</a>
+    <a href="../market/">Marketing</a>
+    <a class="btn-outline nav-cta" href="../questionnaire/">Start the Process</a>
+  </div>
+
+  <main>
+    <section class="section page-hero" id="hero">
+      <div class="container">
+        <span class="eyebrow" data-animate>Start the Process</span>
+        <h1 data-animate>Let's start with <span class="accent">your world.</span></h1>
+        <p class="lead" data-animate style="--stagger-i:1">A few questions is all it takes. Tell us what you're building and we'll come back with a free demo — a real look at what we'd do, before you commit to anything.</p>
+      </div>
+    </section>
+
+    <section class="section" id="form">
+      <div class="container form-wrap">
+        <form class="intake-form" action="https://formspree.io/f/mnjkodoz" method="POST" data-animate>
+          <!-- notify email on file: thehg0902@gmail.com (set in Formspree dashboard) -->
+          <input type="hidden" name="_subject" value="New Sol Studio project enquiry">
+          <!-- honeypot spam trap (Phase 5 forms skill hardens validation/success UX) -->
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
+
+          <div class="field">
+            <label for="name">Your name</label>
+            <input id="name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" required>
+          </div>
+          <div class="field">
+            <label for="company">Business / brand name</label>
+            <input id="company" name="company" type="text" autocomplete="organization">
+          </div>
+
+          <fieldset class="field">
+            <legend>What do you need? <span class="hint">Choose any</span></legend>
+            <label class="check"><input type="checkbox" name="services" value="Development"> Development</label>
+            <label class="check"><input type="checkbox" name="services" value="Design"> Design</label>
+            <label class="check"><input type="checkbox" name="services" value="Marketing"> Marketing</label>
+            <label class="check"><input type="checkbox" name="services" value="Not sure yet"> Not sure yet</label>
+          </fieldset>
+
+          <div class="field">
+            <label for="timeline">Ideal timeline</label>
+            <select id="timeline" name="timeline">
+              <option value="">Select one</option>
+              <option>As soon as possible</option>
+              <option>1–3 months</option>
+              <option>3–6 months</option>
+              <option>Just exploring</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="budget">Budget range <span class="hint">Optional</span></label>
+            <select id="budget" name="budget">
+              <option value="">Prefer not to say</option>
+              <!-- PLACEHOLDER: confirm budget bands that match your pricing — see QUESTIONS.md -->
+              <option>[PLACEHOLDER: band 1]</option>
+              <option>[PLACEHOLDER: band 2]</option>
+              <option>[PLACEHOLDER: band 3]</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="message">Tell us about the project</label>
+            <textarea id="message" name="message" rows="6" placeholder="What are you building, and what does success look like?"></textarea>
+          </div>
+
+          <button class="btn-outline" type="submit">Send &amp; claim my free demo &rarr;</button>
+          <p class="form-fineprint">No spam, no obligation. We'll reply to arrange your free demo.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="logo" href="../"><img src="../assets/images/logo-mark.webp" alt="" width="36" height="36">SOL STUDIO</a>
+    <div class="social-icons">
+      <a href="[PLACEHOLDER: Instagram URL]" aria-label="Instagram">IG</a>
+      <a href="[PLACEHOLDER: LinkedIn URL]" aria-label="LinkedIn">in</a>
+      <a href="mailto:[PLACEHOLDER: public contact email]" aria-label="Email">@</a>
+    </div>
+    <span>&copy; 2026 Sol Studio</span>
+  </footer>
+
+  <script src="../shared/main.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+/* Design tokens — "Gravity" direction (state/DECISIONS.md, Phase 2).
+   Single source of truth: every visual value used in site/ lives here.
+   Palette hexes are client-supplied verbatim (client/assets-intake/vibe/
+   color Pallet.png); success/error are derived to sit in the same family
+   since the client palette has no green. All pairings WCAG-AA checked
+   (see DECISIONS.md for the contrast table). */
+
+@font-face {
+  font-family: 'Old Standard TT';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../assets/fonts/old-standard-tt-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Old Standard TT';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../assets/fonts/old-standard-tt-700.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Old Standard TT';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../assets/fonts/old-standard-tt-400i.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('../assets/fonts/poppins-800.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../assets/fonts/inter-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../assets/fonts/inter-500.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('../assets/fonts/inter-600.woff2') format('woff2');
+}
+
+:root {
+  /* Colors — base/dark scale (client palette 1-5) */
+  --color-bg: #020814;          /* Void Black */
+  --color-surface: #0D192C;     /* Deep Space Navy */
+  --color-primary-dark: #1F2A45; /* Midnight Blue */
+  --color-primary: #747DAA;      /* Dusty Indigo, lightened (L 0.56 same hue/sat) so
+                                     bg-colored button labels clear 4.5:1 on a primary fill */
+  --color-border: #596392;       /* Dusty Indigo, client-exact — hairline borders, 3:1+ */
+
+  /* Colors — warm/accent scale (client palette 6-10) */
+  --color-accent: #EA6C66;      /* Accretion Orange — CTAs, highlights, scarce per 60-30-10 */
+  --color-accent-light: #FA9B82; /* Soft Peach Glow — gradient end, large-text accent */
+
+  /* Colors — text */
+  --color-text: #F2F4F8;        /* near-white, cool-tinted toward primary hue */
+  --color-text-muted: #A8AFC4;  /* light indigo-grey */
+
+  /* Colors — state (derived; no green/true-red in client palette) */
+  --color-success: #3EAA7E;
+  --color-error: #CA4E56;       /* Solar Coral, client palette */
+
+  /* Typography — Old Standard TT (heading, high-contrast display serif,
+     italic available for accent phrases) + Inter (body): "quiet luxury"
+     pairing per typography.md - elegant serif display over neutral sans body.
+     --font-display (contract v1.3.0): heavy geometric sans for the HOME hero
+     headline only, operator-directed to match their reference mockup. */
+  --font-heading: 'Old Standard TT', Georgia, serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-display: 'Poppins', 'Inter', system-ui, sans-serif;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.333rem;
+  --text-2xl: 1.777rem;
+  --text-3xl: 2.369rem;
+  --text-hero: clamp(2.5rem, 5vw + 1rem, 5rem);
+  --leading-tight: 1.15;
+  --leading-normal: 1.5;
+  --leading-loose: 1.8;
+
+  /* Spacing (4px base) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-7: 1.75rem;
+  --space-8: 2rem;
+  --space-9: 2.25rem;
+  --space-10: 2.5rem;
+  --space-11: 2.75rem;
+  --space-12: 3rem;
+
+  /* Layout */
+  --container-max: 1200px;
+  --section-pad-y: 6rem;
+  --radius-sm: 4px;
+  --radius-md: 10px;
+  --radius-lg: 20px;
+  --radius-full: 999px;
+
+  /* Elevation — dark theme: soft glow, not drop-shadow-on-white */
+  --shadow-sm: 0 1px 2px rgba(2, 8, 20, 0.6);
+  --shadow-md: 0 4px 16px rgba(2, 8, 20, 0.5), 0 0 24px rgba(234, 108, 102, 0.06);
+  --shadow-lg: 0 12px 40px rgba(2, 8, 20, 0.6), 0 0 48px rgba(234, 108, 102, 0.08);
+
+  /* Motion */
+  --duration-fast: 150ms;
+  --duration-base: 300ms;
+  --duration-slow: 600ms;
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Effects — frosted-glass backdrop-filter (the hero video stays fixed
+     behind every section; sections dim/blur it, never cut to a hard edge) */
+  --blur-md: 18px;
+  --blur-lg: 30px;
+}
