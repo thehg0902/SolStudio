@@ -1,7 +1,7 @@
 # Build State
 
 Client: (set at Phase 0)
-Template version: v1.7.1
+Template version: v1.8.0
 Started: -
 
 | phase | name         | status  | gate                      | completed |
