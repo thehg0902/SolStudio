@@ -80,7 +80,7 @@ We refuse to be common, we thrive for exceptionalism
 - Primary action:
 - Target search terms:
 - Languages:
-- Pages:
+- Pages:home | hero | process | pillars | cta / dev / design / market / questionnaire
 - Domain:solforged.net
 ### Integrations
 - Google Maps:
@@ -114,7 +114,7 @@ We refuse to be common, we thrive for exceptionalism
 - framework:
 ### Meta
 - Autonomy:
-- Special requests:
+- Special requests: Home "process" section = the building process: an initial understanding phase, then planning, framed on the Observe-Orient-Decide-Act (OODA) system — keep the ideology intact but rewrite it with elevated, stylized copywriting (copy magic, not military jargon). Home "pillars" section = three pillars of work: Development, Design, Marketing — each pillar links to its own page (dev / design / market). Home "cta" section = contact CTA driving to the questionnaire page.
 
 ## Business Profile Paste
 <!-- Paste anything below this line: GBP about panel, Google Maps listing
