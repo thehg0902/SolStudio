@@ -76,3 +76,8 @@ Notes:
 - QA-BLOCKERS remain (operator input, will fail qa-review): [PLACEHOLDER] text (per-pillar
   services, pricing, social URLs, contact email, location) + the 9 portfolio gallery slots
   (real work or drop the sections). Phase 6 QA not run yet — it will fail until these resolve.
+- 2026-07-10 build committed on main (54b929f) and pushed. staging is now SITE-ONLY
+  (git subtree split of site/ -> f49dfcd, force-pushed; operator request) — hosting can
+  serve staging's root directly for previews. deploy branch NOT written: the
+  pre-deploy-qa-gate hook blocked scripts/deploy-split.sh (QA not done) — correct per the
+  hard invariant; deploy gets generated after /qa passes.
