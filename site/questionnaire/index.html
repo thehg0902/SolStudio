@@ -8,9 +8,10 @@
   <link rel="stylesheet" href="../shared/tokens.css">
   <link rel="stylesheet" href="../shared/base.css">
   <link rel="stylesheet" href="style.css">
+  <noscript><style>.nav-links{display:flex;flex-wrap:wrap}.nav-toggle{display:none}</style></noscript>
 </head>
 <body>
-  <div class="site-backdrop" aria-hidden="true"><img src="../assets/images/hero-poster.webp" alt=""></div>
+  <div class="site-backdrop" aria-hidden="true"><img src="../assets/images/hero-poster.webp" alt="" width="1440" height="810"></div>
 
   <header class="site-header">
     <div class="container">
@@ -86,16 +87,7 @@
               <option>Just exploring</option>
             </select>
           </div>
-          <div class="field">
-            <label for="budget">Budget range <span class="hint">Optional</span></label>
-            <select id="budget" name="budget">
-              <option value="">Prefer not to say</option>
-              <!-- PLACEHOLDER: confirm budget bands that match your pricing — see QUESTIONS.md -->
-              <option>[PLACEHOLDER: band 1]</option>
-              <option>[PLACEHOLDER: band 2]</option>
-              <option>[PLACEHOLDER: band 3]</option>
-            </select>
-          </div>
+          <!-- budget-range field omitted pending operator's pricing bands (QUESTIONS.md) -->
 
           <div class="field">
             <label for="message">Tell us about the project</label>
@@ -111,11 +103,6 @@
 
   <footer class="site-footer">
     <a class="logo" href="../"><img src="../assets/images/logo-mark.webp" alt="" width="36" height="36">SOL STUDIO</a>
-    <div class="social-icons">
-      <a href="[PLACEHOLDER: Instagram URL]" aria-label="Instagram">IG</a>
-      <a href="[PLACEHOLDER: LinkedIn URL]" aria-label="LinkedIn">in</a>
-      <a href="mailto:[PLACEHOLDER: public contact email]" aria-label="Email">@</a>
-    </div>
     <span>&copy; 2026 Sol Studio</span>
   </footer>
 

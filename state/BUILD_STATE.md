@@ -12,7 +12,7 @@ Started: 2026-07-10
 | 3     | content      | done    | -                         | 2026-07-10 |
 | 4     | media        | done    | HUMAN: fill slots/approve | 2026-07-10 |
 | 5     | build        | done    | -                         | 2026-07-10 |
-| 6     | qa           | pending | scripts must pass         | -         |
+| 6     | qa           | blocked | scripts must pass         | -         |
 | 7     | deploy       | pending | HUMAN: confirm deploy     | -         |
 | 8     | handoff      | pending | -                         | -         |
 
@@ -81,3 +81,22 @@ Notes:
   serve staging's root directly for previews. deploy branch NOT written: the
   pre-deploy-qa-gate hook blocked scripts/deploy-split.sh (QA not done) — correct per the
   hard invariant; deploy gets generated after /qa passes.
+- 2026-07-10 /qa RUN:
+  * check.py: PASS (0 fail, 8 benign warns: 3 comment-only per-page css stubs; header/
+    footer "drift" = relative-path + aria-current differences between root and subpages).
+    Fixes applied to get there: home self-links / -> index.html (file:// portability);
+    mask-gradient #000 -> var(--color-bg) (identical alpha masks, token-clean); subpage
+    backdrop imgs given width/height (CLS); ALL [PLACEHOLDER] content OMITTED, not
+    invented (footer socials removed; unconfirmed service cards/FAQ items removed;
+    galleries removed; questionnaire budget field removed — QUESTIONS.md items stay open,
+    everything restorable when answered); hero videos re-encoded from originals at CRF 26
+    (intro 698KB + loop 1.62MB = 2.32MB combined, under the 3MB no-cdn cap).
+  * Manual review: PASS, no criticals. No client facts on-site beyond confirmed ones
+    (name, free demo, custom/no-templates); links all valid; Formspree endpoint matches
+    client.md; MEDIA_LOG in-use files all exist. Fixed in-review: mobile no-JS nav gap —
+    added <noscript> inline-nav fallback to all 5 pages (component-api rule 5).
+  * VISUAL QA: NOT RUN — blocked. The Browser-pane tooling switched to the Chrome-
+    extension backend mid-session and the extension is disconnected, so the rendered
+    360/768/1280 audit (incl. the post-placeholder-removal layouts and re-encoded video
+    quality) could not be performed. PHASE 6 BLOCKED on this single item.
+- Phase 6 status: script PASS + manual PASS + visual PENDING -> blocked (not done).
