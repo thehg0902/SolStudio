@@ -1,0 +1,196 @@
+/* style.css — HOME page. Reproduces the BINDING preview/layout-preview.html:
+   the fixed intro-loop hero video (in .site-backdrop, base.css) shows through
+   frosted section panels; the process is a pinned crossfade stage where steps
+   flow in and out one at a time. Copy + real media are final. */
+
+/* intro-loop: loop video sits under the intro, revealed by script.js */
+.site-backdrop [data-il-loop]{opacity:0}
+
+/* ---- hero — cinematic launch, matched to the operator's reference mockup:
+   stacked all-caps display headline (white, white, gradient), a bordered
+   "View Work" button, a gradient-rule tag bottom-left and a circular scroll
+   button bottom-right. The intro video establishes the scene first; elements
+   then fade in on a timed choreography. Pure CSS timing (runs without JS,
+   always ends visible); reduced-motion users see everything immediately. */
+/* fits entirely in the first viewport: 100svh minus the sticky header's
+   flow height (36px logo + 2*space-4 padding + 1px border) — the tag and
+   scroll button at the bottom are visible without scrolling */
+.hero-block{position:relative;
+  min-height:calc(100svh - (36px + 2*var(--space-4) + 1px));
+  display:flex;flex-direction:column;justify-content:center;
+  padding-block:var(--space-8) calc(var(--space-12) + var(--space-10))}
+.hero-block .container{position:relative;z-index:1}
+.hero-title{font-family:var(--font-display);font-weight:800;text-transform:uppercase;
+  font-size:clamp(3.2rem, 8vw, 7.5rem);letter-spacing:.01em;line-height:.98;
+  text-shadow:0 2px 40px color-mix(in srgb, var(--color-bg) 80%, transparent)}
+.hero-title .line{display:block}
+.hero-title .grad{background:linear-gradient(90deg, var(--color-accent),
+    color-mix(in srgb, var(--color-primary) 55%, var(--color-error)));
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-5);margin-top:var(--space-10)}
+/* rounded-rectangle bordered button (not the pill) per the reference */
+.btn-hero{display:inline-flex;align-items:center;gap:var(--space-6);
+  font-family:var(--font-body);font-size:var(--text-sm);font-weight:600;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--color-text);
+  padding:1.1rem 1.7rem;border-radius:var(--radius-md);
+  border:1px solid color-mix(in srgb, var(--color-text) 35%, transparent);
+  background:color-mix(in srgb, var(--color-bg) 40%, transparent);
+  backdrop-filter:blur(var(--blur-md));-webkit-backdrop-filter:blur(var(--blur-md));
+  transition:border-color var(--duration-fast) var(--ease-standard),
+             background var(--duration-fast) var(--ease-standard),
+             transform var(--duration-fast) var(--ease-standard)}
+.btn-hero:hover{border-color:color-mix(in srgb, var(--color-text) 70%, transparent);
+  background:color-mix(in srgb, var(--color-bg) 60%, transparent)}
+.btn-hero:active{transform:scale(.97)}
+.btn-hero .arrow{font-family:var(--font-body)}
+/* bottom-left: gradient rule + tracked tag */
+.hero-tag{position:absolute;bottom:var(--space-10);left:0;z-index:1;
+  display:flex;align-items:center;gap:var(--space-5);
+  font-size:var(--text-xs);letter-spacing:.3em;text-transform:uppercase;
+  color:var(--color-text-muted)}
+.tag-rule{width:clamp(6rem, 14vw, 11rem);height:2px;
+  background:linear-gradient(90deg, transparent, var(--color-accent) 60%, transparent)}
+/* bottom-right: circular scroll-down button */
+.hero-scroll{position:absolute;bottom:var(--space-8);right:var(--space-8);z-index:1;
+  width:56px;height:56px;border-radius:var(--radius-full);
+  border:1px solid color-mix(in srgb, var(--color-text) 30%, transparent);
+  display:flex;align-items:center;justify-content:center;
+  font-size:var(--text-lg);color:var(--color-text);
+  background:color-mix(in srgb, var(--color-bg) 30%, transparent);
+  transition:border-color var(--duration-fast) var(--ease-standard),
+             transform var(--duration-fast) var(--ease-standard)}
+.hero-scroll:hover{border-color:var(--color-accent);color:var(--color-accent)}
+.hero-scroll:active{transform:scale(.95)}
+
+/* web (>=1024px): hero content offset left of the centered container */
+@media (min-width:1024px){
+  .hero-block .container{transform:translateX(-150px)}
+}
+
+/* phone portrait: everything centered; ONE uniform headline size (words keep
+   their natural varying widths — more dynamic than forced equal widths),
+   large enough that the narrowest word (BUILD) spans >=50% of the screen:
+   BUILD ≈ 3.1em of glyph advance -> 17vw gives ~53vw; the widest (ATTRACT,
+   ~4.8em) lands ~82vw, inside the container padding */
+@media (max-width:640px) and (orientation: portrait){
+  .hero-block .container{text-align:center}
+  .hero-title{font-size:17vw}
+  .hero-actions{justify-content:center}
+  /* tag centered above the scroll circle; no transforms (they'd be
+     overridden by the entrance animation's fill state) */
+  .hero-tag{left:0;right:0;justify-content:center;
+    bottom:calc(var(--space-6) + 56px + var(--space-6))}
+  .hero-scroll{left:0;right:0;margin-inline:auto;bottom:var(--space-6)}
+}
+
+@media (prefers-reduced-motion: no-preference){
+  /* launch choreography: video establishes, then DESIGN -> +0.5s BUILD ->
+     +0.5s ATTRACT -> +0.5s the button, then the corner elements; the top
+     bar slides down LAST, once the hero is fully shown (~4.3s = corner
+     elements' 3.1s delay + 1.2s duration). Home page only (this file). */
+  .hero-title .line{animation:hero-title-in 1s var(--ease-out-expo) both}
+  .hero-title .line:nth-child(1){animation-delay:1s}
+  .hero-title .line:nth-child(2){animation-delay:1.5s}
+  .hero-title .line:nth-child(3){animation-delay:2s}
+  .hero-actions{animation:hero-cta-in 1.2s var(--ease-out-expo) 2.5s both}
+  .hero-tag,.hero-scroll{animation:hero-cta-in 1.2s var(--ease-out-expo) 3.1s both}
+  /* top bar arrives together with the Digital Experiences tag */
+  .site-header{animation:header-in .9s var(--ease-out-expo) 3.1s both}
+  @keyframes header-in{
+    from{opacity:0;transform:translateY(-100%)}
+    to{opacity:1;transform:none}}
+  @keyframes hero-title-in{
+    from{opacity:0;transform:translateY(34px);filter:blur(10px)}
+    to{opacity:1;transform:none;filter:blur(0)}}
+  @keyframes hero-cta-in{
+    from{opacity:0;transform:translateY(16px)}
+    to{opacity:1;transform:none}}
+}
+
+/* ---- process: pinned crossfade stage ----
+   Base (fallback / reduced-motion / no scroll-timeline support): a plain,
+   fully-visible vertical list. The pin + crossfade only turn on inside
+   @supports (animation-timeline: view()) AND prefers-reduced-motion. */
+.process-scroll{position:relative}
+.process-stage{position:relative;padding-block:var(--section-pad-y)}
+.process-stage::before{content:"";position:absolute;inset:0;z-index:0;
+  background:color-mix(in srgb, var(--color-bg) 40%, transparent);
+  backdrop-filter:blur(var(--blur-md));-webkit-backdrop-filter:blur(var(--blur-md));
+  -webkit-mask:linear-gradient(to bottom, transparent 0,
+    #000 var(--space-12), #000 calc(100% - var(--space-12)), transparent 100%);
+          mask:linear-gradient(to bottom, transparent 0,
+    #000 var(--space-12), #000 calc(100% - var(--space-12)), transparent 100%)}
+.process-stage > .container{position:relative;z-index:1}
+.process-steps{position:relative;margin-top:var(--space-10);
+  display:flex;flex-direction:column;gap:var(--space-12)}
+.process-step{display:grid;grid-template-columns:1fr;gap:var(--space-6);align-items:center}
+@media (min-width:768px){.process-step{grid-template-columns:auto 1fr;gap:var(--space-10)}}
+.process-media{width:100%;max-width:220px;margin-inline:auto}
+.process-media img{width:100%;height:auto;border-radius:var(--radius-lg)}
+.process-index{display:block;font-family:var(--font-heading);font-size:var(--text-sm);
+  letter-spacing:.12em;text-transform:uppercase;color:var(--color-accent);margin-bottom:var(--space-2)}
+.process-copy h3{font-size:var(--text-2xl);margin:0 0 var(--space-3)}
+.process-copy p{color:var(--color-text-muted);font-size:var(--text-lg);margin:0;max-width:48ch}
+.process-dots{display:none;gap:var(--space-3);justify-content:center;margin-top:var(--space-10)}
+.process-dots i{width:8px;height:8px;border-radius:var(--radius-full);background:var(--color-border);display:block}
+
+@media (prefers-reduced-motion: no-preference){
+  /* ambient float on each icon */
+  .process-media{animation:process-float 6s var(--ease-standard) infinite}
+  @keyframes process-float{
+    0%,100%{transform:translateY(0) scale(1)}
+    50%{transform:translateY(-8px) scale(1.04)}}
+
+  @supports (animation-timeline: view()){
+    .process-scroll{height:420vh;view-timeline:--proc block}
+    .process-stage{position:sticky;top:0;min-height:100svh;
+      display:flex;flex-direction:column;justify-content:center}
+    /* margin-inline:auto on .container shrinks it inside a flex column —
+       force full width so the steps get the real container width */
+    .process-stage > .container{width:100%}
+    .process-steps{min-height:56vh}
+    /* absolute-stacked, but centered as a bounded block so the copy column
+       keeps a readable width (not collapsed by place-content:center) */
+    .process-step{position:absolute;inset:0;margin-inline:auto;max-width:52rem;
+      padding-inline:var(--space-4);display:grid;grid-template-columns:1fr;
+      justify-items:center;align-content:center;gap:var(--space-6);text-align:center;
+      opacity:0;animation:proc-flow linear both;animation-timeline:--proc}
+    @media (min-width:768px){.process-step{grid-template-columns:auto minmax(0,30rem);
+      justify-items:start;align-items:center;text-align:left;gap:var(--space-10)}}
+    .process-step:nth-child(1){animation-range:contain 0% contain 28%}
+    .process-step:nth-child(2){animation-range:contain 24% contain 52%}
+    .process-step:nth-child(3){animation-range:contain 48% contain 76%}
+    .process-step:nth-child(4){animation-name:proc-flow-last;animation-range:contain 72% contain 100%}
+    @keyframes proc-flow{
+      0%{opacity:0;transform:translateY(46px) scale(.96);filter:blur(8px)}
+      22%,78%{opacity:1;transform:none;filter:blur(0)}
+      100%{opacity:0;transform:translateY(-46px) scale(.96);filter:blur(8px)}}
+    @keyframes proc-flow-last{
+      0%{opacity:0;transform:translateY(46px) scale(.96);filter:blur(8px)}
+      30%,100%{opacity:1;transform:none;filter:blur(0)}}
+    .process-dots{display:flex}
+    .process-dots i{animation:proc-dot linear both;animation-timeline:--proc}
+    .process-dots i:nth-child(1){animation-range:contain 0% contain 28%}
+    .process-dots i:nth-child(2){animation-range:contain 24% contain 52%}
+    .process-dots i:nth-child(3){animation-range:contain 48% contain 76%}
+    .process-dots i:nth-child(4){animation-range:contain 72% contain 100%}
+    @keyframes proc-dot{
+      0%,100%{background:var(--color-border);transform:scale(1)}
+      38%,62%{background:var(--color-accent);transform:scale(1.5)}}
+  }
+}
+
+/* ---- pillars (pure text, dim cover on hover) ---- */
+.pillars-grid{display:grid;grid-template-columns:1fr;gap:var(--space-2);margin-top:var(--space-10)}
+@media (min-width:1024px){.pillars-grid{grid-template-columns:repeat(3,1fr)}}
+.pillar-card{position:relative;z-index:0;overflow:hidden;border-radius:var(--radius-lg);
+  padding:var(--space-8);color:var(--color-text)}
+.pillar-card::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;
+  background:var(--color-primary-dark);opacity:0;
+  transition:opacity var(--duration-base) var(--ease-standard)}
+.pillar-card:hover::before,.pillar-card:focus-visible::before{opacity:.6}
+.pillar-card h3{font-size:var(--text-xl);margin-bottom:var(--space-2)}
+.pillar-card p{color:var(--color-text-muted);font-size:var(--text-base);margin-bottom:var(--space-4);max-width:40ch}
+.pillar-card .go{color:var(--color-accent);font-size:var(--text-sm);font-weight:600}
+
+/* .cta-band, .cta-actions, .hero-note, .placeholder-box live in base.css (shared) */

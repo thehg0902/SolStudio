@@ -1,0 +1,35 @@
+/* style.css — Questionnaire page. The intake form is the primary
+   conversion element on the site, so its styling lives here. */
+
+.form-wrap{max-width:640px}
+.intake-form{display:flex;flex-direction:column;gap:var(--space-6)}
+.field{display:flex;flex-direction:column;gap:var(--space-2);border:0;padding:0;margin:0}
+.field label,.field legend{font-size:var(--text-sm);letter-spacing:.04em;
+  text-transform:uppercase;color:var(--color-text-muted)}
+.field .hint{text-transform:none;letter-spacing:0;opacity:.7;margin-left:var(--space-2)}
+
+/* inputs — 16px min font prevents iOS focus zoom (mobile-polish) */
+.intake-form input[type="text"],
+.intake-form input[type="email"],
+.intake-form select,
+.intake-form textarea{
+  font-family:inherit;font-size:var(--text-base);color:var(--color-text);
+  background:color-mix(in srgb, var(--color-surface) 60%, transparent);
+  border:1px solid var(--color-border);border-radius:var(--radius-md);
+  padding:var(--space-3) var(--space-4);width:100%;
+  transition:border-color var(--duration-fast) var(--ease-standard)}
+.intake-form textarea{resize:vertical;min-height:8rem}
+.intake-form input:focus,.intake-form select:focus,.intake-form textarea:focus{
+  outline:none;border-color:var(--color-accent)}
+
+/* checkbox rows — 44px min touch targets */
+.check{display:flex;align-items:center;gap:var(--space-3);
+  text-transform:none;letter-spacing:0;font-size:var(--text-base);color:var(--color-text);
+  min-height:44px;cursor:pointer}
+.check input{width:20px;height:20px;accent-color:var(--color-accent);flex:none}
+
+/* honeypot — visually hidden, not display:none (some bots skip hidden) */
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+
+.intake-form .btn-outline{align-self:flex-start;margin-top:var(--space-2)}
+.form-fineprint{font-size:var(--text-xs);color:var(--color-text-muted)}

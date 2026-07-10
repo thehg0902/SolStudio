@@ -1,0 +1,183 @@
+/* base.css — reset, element defaults, and the shared shell (container,
+   sections, buttons, header/nav, footer, entrance animation) used by every
+   page. Consumes tokens.css only; never hardcodes a visual value.
+   NOTE (Phase 3): this is the stable, on-brand shell. The home page's
+   signature effects (fixed hero video behind all sections, frosted-glass
+   section boundaries, pinned crossfade process) are added in Phase 5 from
+   the binding preview/layout-preview.html — they are page-specific and live
+   in site/style.css, not here. */
+
+/* ---- reset ---- */
+*,*::before,*::after{box-sizing:border-box}
+html{background:var(--color-bg)}
+body{margin:0;background:transparent;color:var(--color-text);
+  font-family:var(--font-body);line-height:var(--leading-normal);
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+img,svg,video{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;cursor:pointer}
+h1,h2,h3,h4{font-family:var(--font-heading);font-weight:400;letter-spacing:-.02em;
+  margin:0;line-height:var(--leading-tight)}
+p{margin:0}
+:focus-visible{outline:2px solid var(--color-accent);outline-offset:3px}
+
+/* ---- fixed cosmic backdrop (behind every page) ----
+   Home puts the intro-loop hero video here; other pages use the poster
+   still. Content floats over it; sections frost it (see .section::before). */
+.site-backdrop{position:fixed;inset:0;z-index:-2;overflow:hidden;background:var(--color-bg)}
+.site-backdrop img,.site-backdrop .backdrop-media{position:absolute;inset:0;
+  width:100%;height:100%;object-fit:cover;object-position:center}
+/* phone portrait: pan the cover crop so the black hole sits centred on screen.
+   68% was set BY THE OPERATOR by eye via the temporary #calibrate slider
+   (2026-07-10) — the video drifts slightly across its loop, so analytic
+   centroid math kept flip-flopping; the calibrated value is authoritative. */
+@media (max-width:640px) and (orientation: portrait){
+  .site-backdrop img,.site-backdrop .backdrop-media{object-position:68% center}
+}
+.site-backdrop::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,
+    color-mix(in srgb, var(--color-bg) 30%, transparent),
+    color-mix(in srgb, var(--color-bg) 55%, transparent))}
+
+/* ---- layout primitives ---- */
+.container{max-width:var(--container-max);margin-inline:auto;padding-inline:var(--space-4)}
+/* every content section is a frosted-glass panel over the backdrop, with
+   top/bottom edges masked to fade — sections melt into each other and into
+   the cosmic backdrop, never a hard rectangular edge. Heroes opt out. */
+.section{position:relative;padding-block:var(--section-pad-y)}
+.section > .container{position:relative;z-index:1}
+.section::before{content:"";position:absolute;inset:0;z-index:0;
+  background:color-mix(in srgb, var(--color-bg) 40%, transparent);
+  backdrop-filter:blur(var(--blur-md));-webkit-backdrop-filter:blur(var(--blur-md));
+  -webkit-mask:linear-gradient(to bottom, transparent 0,
+    #000 var(--space-12), #000 calc(100% - var(--space-12)), transparent 100%);
+          mask:linear-gradient(to bottom, transparent 0,
+    #000 var(--space-12), #000 calc(100% - var(--space-12)), transparent 100%)}
+.section--surface::before{background:color-mix(in srgb, var(--color-surface) 46%, transparent);
+  backdrop-filter:blur(var(--blur-lg));-webkit-backdrop-filter:blur(var(--blur-lg))}
+.eyebrow{display:block;font-size:var(--text-sm);letter-spacing:.14em;text-transform:uppercase;
+  color:var(--color-accent);font-weight:600;margin-bottom:var(--space-3)}
+.lead{color:var(--color-text-muted);font-size:var(--text-lg);max-width:60ch}
+/* gradient italic emphasis word in headings (all page heroes) */
+.accent{font-style:italic;
+  background:linear-gradient(90deg,var(--color-accent),var(--color-accent-light));
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ---- buttons ---- */
+.btn-outline{display:inline-flex;align-items:center;gap:var(--space-2);
+  border:1px solid var(--color-accent);color:var(--color-accent);
+  padding:.9rem 1.8rem;border-radius:var(--radius-full);font-size:var(--text-sm);
+  letter-spacing:.05em;text-transform:uppercase;font-weight:600;
+  transition:background var(--duration-fast) var(--ease-standard),
+             color var(--duration-fast) var(--ease-standard),
+             transform var(--duration-fast) var(--ease-standard)}
+.btn-outline:hover{background:var(--color-accent);color:var(--color-bg)}
+.btn-outline:active{transform:scale(.97)}
+
+/* ---- header / nav (glassy sticky bar) ---- */
+.site-header{position:sticky;top:0;z-index:50;
+  background:color-mix(in srgb, var(--color-bg) 72%, transparent);
+  backdrop-filter:blur(var(--blur-md));-webkit-backdrop-filter:blur(var(--blur-md));
+  border-bottom:1px solid var(--color-border)}
+.site-header .container{display:flex;align-items:center;justify-content:space-between;
+  padding-block:var(--space-4)}
+.logo{display:flex;align-items:center;gap:var(--space-3);font-family:var(--font-heading);
+  font-weight:700;letter-spacing:.08em;font-size:var(--text-lg)}
+.logo img{width:36px;height:36px;flex:none}
+.nav-links{display:none;gap:var(--space-8);list-style:none;margin:0;padding:0;
+  font-size:var(--text-sm);letter-spacing:.06em;text-transform:uppercase}
+.nav-links a{opacity:.85;transition:opacity var(--duration-fast) var(--ease-standard),
+  color var(--duration-fast) var(--ease-standard)}
+.nav-links a:hover,.nav-links a[aria-current="page"]{opacity:1;color:var(--color-accent)}
+.nav-cta{display:none;border:1px solid var(--color-accent);color:var(--color-accent);
+  padding:.6rem 1.3rem;border-radius:var(--radius-full);
+  font-size:var(--text-sm);letter-spacing:.06em;text-transform:uppercase;
+  transition:background var(--duration-fast) var(--ease-standard),color var(--duration-fast) var(--ease-standard)}
+.nav-cta:hover{background:var(--color-accent);color:var(--color-bg)}
+.nav-toggle{display:inline-flex;flex-direction:column;gap:5px;background:none;border:0;
+  padding:12px;min-width:44px;min-height:44px;align-items:center;justify-content:center}
+.nav-toggle span{width:22px;height:2px;background:var(--color-text)}
+.nav-toggle:active{transform:scale(.97)}
+
+/* mobile overlay nav — transform+opacity, frosted (not a display swap) */
+.nav-overlay{position:fixed;inset:0;z-index:100;
+  background:color-mix(in srgb, var(--color-bg) 88%, transparent);
+  backdrop-filter:blur(var(--blur-lg));-webkit-backdrop-filter:blur(var(--blur-lg));
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--space-8);
+  opacity:0;visibility:hidden;transform:translateY(-8px);
+  transition:opacity var(--duration-base) var(--ease-out-expo),
+             transform var(--duration-base) var(--ease-out-expo),
+             visibility 0s linear var(--duration-base)}
+.nav-overlay.is-open{opacity:1;visibility:visible;transform:none;
+  transition:opacity var(--duration-base) var(--ease-out-expo),
+             transform var(--duration-base) var(--ease-out-expo),visibility 0s}
+.nav-overlay a{font-family:var(--font-heading);font-size:var(--text-2xl)}
+.nav-overlay .nav-cta{display:inline-block;margin-top:var(--space-4)}
+.nav-overlay-close{position:absolute;top:var(--space-4);right:var(--space-4);
+  background:none;border:0;font-size:var(--text-2xl);min-width:44px;min-height:44px}
+@media (min-width:1024px){
+  .nav-links{display:flex}
+  .nav-cta{display:inline-block}
+  .nav-toggle{display:none}
+}
+
+/* ---- footer (masked panel, no hard divider line) ---- */
+.site-footer{position:relative;padding-block:var(--space-8);
+  display:flex;flex-wrap:wrap;gap:var(--space-6);align-items:center;justify-content:space-between;
+  font-size:var(--text-sm);color:var(--color-text-muted)}
+.site-footer > *{position:relative;z-index:1}
+.site-footer::before{content:"";position:absolute;inset:0;z-index:0;
+  background:color-mix(in srgb, var(--color-bg) 45%, transparent);
+  backdrop-filter:blur(var(--blur-md));-webkit-backdrop-filter:blur(var(--blur-md));
+  -webkit-mask:linear-gradient(to bottom, transparent 0, #000 var(--space-11), #000 100%);
+          mask:linear-gradient(to bottom, transparent 0, #000 var(--space-11), #000 100%)}
+.social-icons{display:flex;gap:var(--space-3)}
+.social-icons a{width:36px;height:36px;border-radius:var(--radius-full);border:1px solid var(--color-border);
+  display:flex;align-items:center;justify-content:center;font-size:var(--text-xs);
+  transition:border-color var(--duration-fast) var(--ease-standard),color var(--duration-fast) var(--ease-standard)}
+.social-icons a:hover{border-color:var(--color-accent);color:var(--color-accent)}
+
+/* ---- shared components (used on 2+ pages) ---- */
+.hero-note{color:var(--color-text-muted);font-size:var(--text-sm)}
+.placeholder-box{background:var(--color-surface);border:1px dashed var(--color-border);
+  border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;
+  color:var(--color-text-muted);font-size:var(--text-xs);text-align:center;padding:var(--space-4)}
+
+/* cta band — home + every pillar page */
+.cta-band{border-radius:var(--radius-lg);
+  background:radial-gradient(circle at 30% 30%,
+    color-mix(in srgb, var(--color-accent) 16%, transparent), transparent 60%),
+    color-mix(in srgb, var(--color-surface) 52%, transparent);
+  backdrop-filter:blur(var(--blur-lg));-webkit-backdrop-filter:blur(var(--blur-lg));
+  padding:var(--space-10);display:flex;flex-wrap:wrap;gap:var(--space-6);
+  align-items:center;justify-content:space-between}
+.cta-band h2{font-size:var(--text-2xl);max-width:22ch}
+.cta-actions{display:flex;flex-direction:column;gap:var(--space-3)}
+
+/* service-page layout — Development / Design / Marketing share this shell */
+.page-hero{padding-block:calc(var(--section-pad-y) + 2rem) var(--section-pad-y)}
+.page-hero h1{font-size:var(--text-3xl);letter-spacing:-.03em;max-width:16ch}
+@media (min-width:768px){.page-hero h1{font-size:var(--text-hero)}}
+.page-hero .lead{margin-top:var(--space-6)}
+.page-hero .btn-outline{margin-top:var(--space-8)}
+.services-grid{display:grid;grid-template-columns:1fr;gap:var(--space-6);margin-top:var(--space-10)}
+@media (min-width:768px){.services-grid{grid-template-columns:repeat(2,1fr)}}
+.service-item{border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:var(--space-7)}
+.service-item h3{font-size:var(--text-xl);margin-bottom:var(--space-2)}
+.service-item p{color:var(--color-text-muted);font-size:var(--text-base)}
+.gallery-grid{display:grid;grid-template-columns:1fr;gap:var(--space-4);margin-top:var(--space-10)}
+@media (min-width:640px){.gallery-grid{grid-template-columns:repeat(3,1fr)}}
+.gallery-grid .placeholder-box{aspect-ratio:4/3}
+.faq{max-width:60ch;margin-top:var(--space-10)}
+.faq-item{border-top:1px solid var(--color-border);padding-block:var(--space-6)}
+.faq-item h3{font-size:var(--text-lg);margin-bottom:var(--space-2)}
+.faq-item p{color:var(--color-text-muted)}
+
+/* ---- shared entrance animation (css-only.md pattern; JS adds .is-visible) ---- */
+@media (prefers-reduced-motion: no-preference){
+  .anim-ready [data-animate]{opacity:0;transform:translateY(20px);
+    transition:opacity var(--duration-slow) var(--ease-out-expo),
+               transform var(--duration-slow) var(--ease-out-expo);
+    transition-delay:calc(var(--stagger-i,0)*75ms)}
+  .anim-ready [data-animate].is-visible{opacity:1;transform:none}
+}
