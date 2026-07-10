@@ -8,11 +8,13 @@
 ## Creative
 <!-- The only part you write by hand. Answer what you know; skip the rest. -->
 - What makes this business better than competitors:
+
 - The story / why they started:
+We refuse to be common, we thrive for exceptionalism
 - Ideal customer:
-- Offer / guarantee / promo:
+- Offer / guarantee / promo:Free demo
 - Mood (3-6 adjectives):
-- Never say / avoid:
+- Never say / avoid:Cheap, Low quality
 
 ## Vibe
 <!-- Optional. Describe the FEEL the website should have, in your own
@@ -80,15 +82,15 @@
 - Target search terms:
 - Languages:
 - Pages:
-- Domain:
+- Domain:solforged.net
 ### Integrations
 - Google Maps:
 - Google Business Profile:
 - Socials:
-- Existing website:
+- Existing website:www.solforged.net{its connected to another repo i intent to use this one to override the previous verision}
 - Booking link:
-- Formspree ID:
-- Form notify email:
+- Formspree ID:https://formspree.io/f/mnjkodoz
+- Form notify email:thehg0902@gmail.com
 - GA4 ID / Plausible domain:
 - Hosting plan:
 ### Media policy
@@ -103,13 +105,13 @@
 - Competitors:
 - Style references:
 ### Stack flags
-- animation:
+- animation: css only.
 - 3d:
-- booking:
-- forms:
-- email-marketing:
+- booking:placeholder for calandly
+- forms:formspree: formspree
+- email-marketing:none
 - analytics:
-- hero-media:
+- hero-media:intro-loop
 - framework:
 ### Meta
 - Autonomy:
