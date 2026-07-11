@@ -12,7 +12,7 @@ Started: 2026-07-10
 | 3     | content      | done    | -                         | 2026-07-10 |
 | 4     | media        | done    | HUMAN: fill slots/approve | 2026-07-10 |
 | 5     | build        | done    | -                         | 2026-07-10 |
-| 6     | qa           | blocked | scripts must pass         | -         |
+| 6     | qa           | done    | scripts must pass         | 2026-07-11 |
 | 7     | deploy       | pending | HUMAN: confirm deploy     | -         |
 | 8     | handoff      | pending | -                         | -         |
 
@@ -99,4 +99,7 @@ Notes:
     extension backend mid-session and the extension is disconnected, so the rendered
     360/768/1280 audit (incl. the post-placeholder-removal layouts and re-encoded video
     quality) could not be performed. PHASE 6 BLOCKED on this single item.
-- Phase 6 status: script PASS + manual PASS + visual PENDING -> blocked (not done).
+- Phase 6 status: script PASS + manual PASS + visual = OPERATOR SIGN-OFF (2026-07-11,
+  in-chat: operator previewed on their own devices and chose "Sign off visual QA" —
+  recorded in lieu of the tool-driven 360/768/1280 audit, which stays unavailable while
+  the browser extension is disconnected). PHASE 6 DONE.
