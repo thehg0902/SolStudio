@@ -476,6 +476,17 @@ Local grounding (rule 4) SKIPPED - no city on file (question logged);
   Verified statically only (curl: markup + all rules serve); visual pass
   still blocked on the disconnected Chrome extension.
 
+2026-07-10 | QA content omissions | claude | to clear the QA gate without
+  inventing facts, all [PLACEHOLDER] content was OMITTED rather than
+  filled: footer social links (all 5 pages), unconfirmed service cards
+  (dev kept 2 confirmed, design 1, market 1), unconfirmed FAQ items
+  (1 per pillar page), all 3 work galleries (operator never supplied
+  portfolio; MEDIA_LOG slots stay `planned`), and the questionnaire
+  budget-range field. Every omission is restorable from git history the
+  moment the matching QUESTIONS.md item is answered — the questions
+  remain open. Also: mobile no-JS <noscript> nav fallback added; hero
+  videos re-encoded CRF26 (2.32MB combined, under no-cdn cap).
+
 2026-07-10 | hero v3.1 (operator refinements) | human+claude | phone
   portrait: dropped the per-word equal-width sizing (operator: "do not
   resize the text") for ONE uniform 17vw headline size — word widths vary
