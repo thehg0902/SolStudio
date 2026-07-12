@@ -1,7 +1,8 @@
-/* style.css — HOME page. Reproduces the BINDING preview/layout-preview.html:
+/* style.css — HOME page. Reproduces the BINDING preview/layout-preview.html
+   (process section superseded by operator request, see state/DECISIONS.md):
    the fixed intro-loop hero video (in .site-backdrop, base.css) shows through
-   frosted section panels; the process is a pinned crossfade stage where steps
-   flow in and out one at a time. Copy + real media are final. */
+   frosted section panels; the process is a pinned magnetic dock — one main
+   card, neighbors squished small. Copy + real media are final. */
 
 /* intro-loop: loop video sits under the intro, revealed by script.js */
 .site-backdrop [data-il-loop]{opacity:0}
@@ -107,10 +108,11 @@
     to{opacity:1;transform:none}}
 }
 
-/* ---- process: pinned crossfade stage ----
-   Base (fallback / reduced-motion / no scroll-timeline support): a plain,
-   fully-visible vertical list. The pin + crossfade only turn on inside
-   @supports (animation-timeline: view()) AND prefers-reduced-motion. */
+/* ---- process: pinned magnetic dock ----
+   Base (fallback / reduced-motion / no JS / no IntersectionObserver): a plain,
+   fully-visible vertical list. The pin + dock only turn on when script.js
+   sets [data-dock-active] after its motion + capability guards pass; JS
+   drives the unitless --dock-* custom props per frame, CSS owns geometry. */
 .process-scroll{position:relative}
 .process-stage{position:relative;padding-block:var(--section-pad-y)}
 .process-stage::before{content:"";position:absolute;inset:0;z-index:0;
@@ -141,43 +143,34 @@
     0%,100%{transform:translateY(0) scale(1)}
     50%{transform:translateY(-8px) scale(1.04)}}
 
-  @supports (animation-timeline: view()){
-    .process-scroll{height:420vh;view-timeline:--proc block}
-    .process-stage{position:sticky;top:0;min-height:100svh;
-      display:flex;flex-direction:column;justify-content:center}
-    /* margin-inline:auto on .container shrinks it inside a flex column —
-       force full width so the steps get the real container width */
-    .process-stage > .container{width:100%}
-    .process-steps{min-height:56vh}
-    /* absolute-stacked, but centered as a bounded block so the copy column
-       keeps a readable width (not collapsed by place-content:center) */
-    .process-step{position:absolute;inset:0;margin-inline:auto;max-width:52rem;
-      padding-inline:var(--space-4);display:grid;grid-template-columns:1fr;
-      justify-items:center;align-content:center;gap:var(--space-6);text-align:center;
-      opacity:0;animation:proc-flow linear both;animation-timeline:--proc}
-    @media (min-width:768px){.process-step{grid-template-columns:auto minmax(0,30rem);
-      justify-items:start;align-items:center;text-align:left;gap:var(--space-10)}}
-    .process-step:nth-child(1){animation-range:contain 0% contain 28%}
-    .process-step:nth-child(2){animation-range:contain 24% contain 52%}
-    .process-step:nth-child(3){animation-range:contain 48% contain 76%}
-    .process-step:nth-child(4){animation-name:proc-flow-last;animation-range:contain 72% contain 100%}
-    @keyframes proc-flow{
-      0%{opacity:0;transform:translateY(46px) scale(.96);filter:blur(8px)}
-      22%,78%{opacity:1;transform:none;filter:blur(0)}
-      100%{opacity:0;transform:translateY(-46px) scale(.96);filter:blur(8px)}}
-    @keyframes proc-flow-last{
-      0%{opacity:0;transform:translateY(46px) scale(.96);filter:blur(8px)}
-      30%,100%{opacity:1;transform:none;filter:blur(0)}}
-    .process-dots{display:flex}
-    .process-dots i{animation:proc-dot linear both;animation-timeline:--proc}
-    .process-dots i:nth-child(1){animation-range:contain 0% contain 28%}
-    .process-dots i:nth-child(2){animation-range:contain 24% contain 52%}
-    .process-dots i:nth-child(3){animation-range:contain 48% contain 76%}
-    .process-dots i:nth-child(4){animation-range:contain 72% contain 100%}
-    @keyframes proc-dot{
-      0%,100%{background:var(--color-border);transform:scale(1)}
-      38%,62%{background:var(--color-accent);transform:scale(1.5)}}
-  }
+  /* dock mode — the runway pins the stage while cards slide horizontally */
+  .process-scroll[data-process-dock][data-dock-active]{height:420vh}
+  [data-dock-active] .process-stage{position:sticky;top:0;min-height:100svh;
+    overflow:hidden;display:flex;flex-direction:column;justify-content:center}
+  /* margin-inline:auto on .container shrinks it inside a flex column —
+     force full width so the steps get the real container width */
+  [data-dock-active] .process-stage > .container{width:100%}
+  [data-dock-active] .process-steps{position:relative;--dock-step:min(66vw,340px);
+    min-height:clamp(26rem,70svh,32rem)}
+  /* one geometry at every breakpoint: a centered surface card whose x/scale/
+     opacity come from the JS-driven distance to the focus value */
+  [data-dock-active] .process-step{position:absolute;left:50%;top:50%;
+    width:min(86vw,24rem);grid-template-columns:1fr;justify-items:center;
+    text-align:center;gap:var(--space-4);padding:var(--space-8) var(--space-6);
+    background:color-mix(in srgb, var(--color-surface) 88%, transparent);
+    border:1px solid color-mix(in srgb, var(--color-border) 45%, transparent);
+    border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);
+    opacity:var(--dock-o,1);will-change:transform,opacity;
+    transform:translate(-50%,-50%)
+      translateX(calc(var(--dock-x,0) * var(--dock-step)))
+      scale(var(--dock-s,1))}
+  [data-dock-active] .process-media{max-width:9.5rem}
+  [data-dock-active] .process-copy h3{font-size:var(--text-xl);opacity:var(--dock-fade,1)}
+  [data-dock-active] .process-copy p{font-size:var(--text-base);opacity:var(--dock-fade,1)}
+  [data-dock-active] .process-dots{display:flex}
+  [data-dock-active] .process-dots i{transition:background var(--duration-base) var(--ease-standard),
+    transform var(--duration-base) var(--ease-standard)}
+  [data-dock-active] .process-dots i.is-active{background:var(--color-accent);transform:scale(1.5)}
 }
 
 /* ---- pillars (pure text, dim cover on hover) ---- */
