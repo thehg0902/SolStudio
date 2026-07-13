@@ -121,3 +121,7 @@ Notes:
   scratchpad mirror — Desktop TCC blocks the pane's server from the repo). Browser-pane
   screenshots at scroll>0 render black (pre-existing pane bug, affects old QA'd sections
   too) — visual confirmation remains on the operator's own devices via staging/deploy.
+- 2026-07-12 dock SHIPPED to all branches: main 1f212c6 (all local files incl. state +
+  launch.json), deploy 4152c51->9dbc77e (deploy-split.sh, gate passed, fast-forward),
+  staging already current at 1af4162 (tree a112a09 identical to deploy's — verified).
+  All three origin branches now serve the same site content.
