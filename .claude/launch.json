@@ -3,14 +3,29 @@
   "configurations": [
     {
       "name": "site",
-      "runtimeExecutable": "C:/Users/RTX/AppData/Local/Programs/Python/Python312/python.exe",
-      "runtimeArgs": ["-m", "http.server", "8080", "--directory", "site"],
+      "runtimeExecutable": "/bin/sh",
+      "runtimeArgs": [
+        "-c",
+        "cd /Users/changtim/Desktop/AgencyOS/SolStudio/site && exec python3 -m http.server 8080 --bind 127.0.0.1"
+      ],
       "port": 8080
     },
     {
+      "name": "site-preview",
+      "runtimeExecutable": "/bin/sh",
+      "runtimeArgs": [
+        "-c",
+        "cd '/private/tmp/claude-501/-Users-changtim-Desktop-AgencyOS-SolStudio/e1bcbf7e-7434-49a7-90ca-017d6d55d38a/scratchpad/site-preview' && exec python3 -m http.server 8082 --bind 127.0.0.1"
+      ],
+      "port": 8082
+    },
+    {
       "name": "os-root",
-      "runtimeExecutable": "C:/Users/RTX/AppData/Local/Programs/Python/Python312/python.exe",
-      "runtimeArgs": ["-m", "http.server", "8081"],
+      "runtimeExecutable": "/bin/sh",
+      "runtimeArgs": [
+        "-c",
+        "cd /Users/changtim/Desktop/AgencyOS/SolStudio && exec python3 -m http.server 8081 --bind 127.0.0.1"
+      ],
       "port": 8081
     }
   ]

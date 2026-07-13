@@ -109,3 +109,15 @@ Notes:
   f49dfcd staging ref no longer existed on origin — recreated fresh, no force-push.
   Hosting can point at either branch root directly. Awaiting HUMAN: connect hosting +
   confirm deploy to close Phase 7.
+- 2026-07-12 process-section magnetic-dock redesign (operator-approved plan) pushed to
+  staging ONLY as site-only commit 1af4162 (fast-forward; built via temp-index subtree,
+  main NOT committed, deploy untouched at 4152c51). Working tree on main still holds the
+  dock edits + launch.json preview fix, uncommitted. QA re-gate (check.py + visual
+  sign-off) still pending before the dock goes to main/deploy.
+- 2026-07-12 dock re-gate: check.py PASS (0 fail, 8 benign warns — identical set to the
+  Phase 6 run). Operator instructed: push all local files to main + refresh deploy AND
+  staging with newest webfiles. Dock decision logged in DECISIONS.md (process v2).
+  Launch.json fixed for macOS (was stale Windows paths; preview server now serves a
+  scratchpad mirror — Desktop TCC blocks the pane's server from the repo). Browser-pane
+  screenshots at scroll>0 render black (pre-existing pane bug, affects old QA'd sections
+  too) — visual confirmation remains on the operator's own devices via staging/deploy.

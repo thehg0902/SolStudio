@@ -500,3 +500,17 @@ Local grounding (rule 4) SKIPPED - no city on file (question logged);
   (tag/scroll, 3.1s + 1.2s) complete. Reduced-motion: header visible
   immediately. During the delay the header's flow space shows the video
   backdrop (fixed layer), so no visual gap.
+
+2026-07-12 | process section v2: magnetic dock | human+claude | operator-
+  requested redesign superseding the BINDING layout-preview crossfade for
+  this ONE section. Pinned stage kept (420vh runway) but cards now slide
+  horizontally: exactly one full-size main card, adjacent cards squished
+  small (max 3 visible; edges show 2), macOS-dock magnetic snap. JS-driven
+  (script.js rAF-lerp on unitless --dock-* props; scroll never hijacked;
+  reduced-motion/no-IO/no-JS all fall back to the base vertical list —
+  old CSS scroll-timeline crossfade block deleted). Operator approved the
+  plan + interactive mock (artifact 1b784e4c) 2026-07-11. Card panels use
+  existing tokens only (surface color-mix, radius-lg, shadow-lg); zero
+  contract churn. Re-gate: check.py 0 fail / 8 benign warns (same set as
+  Phase 6); pane screenshots broken (black at scroll>0, pre-existing), DOM
+  state verified to spec; operator previews via staging branch.
