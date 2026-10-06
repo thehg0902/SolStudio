@@ -2,3 +2,20 @@
    styles in shared/base.css (.page-hero, .services-grid, .gallery-grid,
    .faq). No page-specific styles needed yet; kept for the file-structure
    contract and any future Development-only tweaks. */
+
+/* ---- portfolio (6 looping-video cards; play only while on screen, see script.js) ---- */
+.work-grid{display:grid;grid-template-columns:1fr;gap:var(--space-8);margin-top:var(--space-10)}
+@media (min-width:640px){.work-grid{grid-template-columns:repeat(2,1fr);gap:var(--space-6)}}
+@media (min-width:1024px){.work-grid{grid-template-columns:repeat(3,1fr)}}
+.work-card{display:block;color:var(--color-text)}
+.work-card__media{aspect-ratio:16/10;overflow:hidden;border-radius:var(--radius-lg);
+  background:var(--color-surface);border:1px solid color-mix(in srgb, var(--color-border) 45%, transparent);
+  transition:border-color var(--duration-base) var(--ease-standard)}
+.work-card__media video{display:block;width:100%;height:100%;object-fit:cover}
+.work-card:hover .work-card__media,.work-card:focus-visible .work-card__media{border-color:var(--color-accent)}
+.work-card__title{font-size:var(--text-lg);margin:var(--space-4) 0 var(--space-1)}
+.work-card__go{color:var(--color-accent);font-size:var(--text-sm);font-weight:600}
+@media (prefers-reduced-motion: no-preference){
+  .work-card__media video{transition:transform var(--duration-slow) var(--ease-out-expo)}
+  .work-card:hover .work-card__media video,.work-card:focus-visible .work-card__media video{transform:scale(1.04)}
+}

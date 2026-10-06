@@ -20,6 +20,7 @@ h1,h2,h3,h4{font-family:var(--font-heading);font-weight:400;letter-spacing:-.02e
   margin:0;line-height:var(--leading-tight)}
 p{margin:0}
 :focus-visible{outline:2px solid var(--color-accent);outline-offset:3px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
 /* ---- fixed cosmic backdrop (behind every page) ----
    Home puts the intro-loop hero video here; other pages use the poster
