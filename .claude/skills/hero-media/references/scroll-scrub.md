@@ -7,7 +7,7 @@
 | control | exact frame per scroll position | seek latency varies |
 | tooling | needs extraction (/ingest does it) | needs all-intra re-encode (-g 1), huge files |
 Verdict: canvas. /ingest extracts frames + writes manifest.json
-automatically (contracts/asset-slots.md).
+automatically (system/contracts/asset-slots.md).
 
 ## Budget math (performance-critical)
 frames = duration_s x fps. Defaults: 12fps, 1440px wide, webp q70.

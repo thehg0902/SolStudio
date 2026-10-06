@@ -1,15 +1,12 @@
 ---
 name: audience-research
-description: Niche audience psychology library - personas, pains, deep
-  desires, objections, decision triggers, and website conversion
-  implications for 11 local-business niches (roofing, electrician,
-  med-spa, physio, chiro, paving, concrete, tree service, garage door,
-  kitchen-bath reno, home builder). Use at Phase 1 (architecture) and
-  Phase 3 (copy) when client.md's Target Audience section is empty or
-  thin. Not for visual direction (design-direction), per-client facts
-  (client.md), or per-client market-research diagnostics
+description: Niche audience psychology library - personas, pains, desires,
+  objections, decision triggers, and conversion implications for 11
+  local-business niches. Use at Phase 1, and at Phase 3 when client.md's
+  Target Audience is thin. Not visual direction (design-direction), live
+  per-client research (market-research), or the doctrine
   (winners-writing-process).
-metadata: {version: 1.0.1, category: process, tier: A}
+metadata: {version: 1.1.1, category: process, tier: A}
 ---
 # Audience Research
 
@@ -24,14 +21,21 @@ Detected niche (Phase 0, DECISIONS.md), client.md `## Target Audience`
 (may be empty), references/<niche>.md.
 
 ## Outputs
-A distilled AUDIENCE BRIEF (~12 lines) in state/DECISIONS.md, written
-once at Phase 1 start; Phases 1-3 consume the brief.
+A distilled AUDIENCE BRIEF (~12 lines) in system/state/DECISIONS.md, written
+once at Phase 1 start; Phases 1-3 consume the brief. The master also
+compresses it to a 6-line PRIOR DIGEST that the Phase 1 research fan-out
+carries as a hypothesis to challenge - so the brief is a starting point for
+live evidence, not the last word.
 
 ## Rules
-1. Match the detected niche to ONE study in references/. No exact
-   match: use the closest study (a deck builder reads concrete/paving;
-   an HVAC install co reads electrician) and note the adaptation in
-   the brief.
+1. Niche source: client.md `## Niche` when the operator typed one, else the
+   category detected at Phase 0. Resolve it through the niche map
+   (alias -> family -> conversion mode) and match ONE study. `adjacent`
+   matches are honest and must be LABELLED as adjacent in the brief so later
+   phases discount trade-specific detail.
+1a. NO match: produce NO brief. Write `prior: none` and continue - a wrong
+   study is worse than no study, because every later phase treats the brief
+   as evidence about this audience. Log a `niche-gap` line instead.
 2. Read the study ONCE, at Phase 1 start; distill the brief into
    DECISIONS.md: primary persona (one line), top 3 pains (their
    words), the deep desire, biggest motivator, decision trigger,
@@ -61,6 +65,11 @@ once at Phase 1 start; Phases 1-3 consume the brief.
 - Copying study prose into site copy verbatim (it is research language,
   not customer-facing voice).
 - Letting the study override client-pasted audience facts.
+- Substituting a wrong study when the niche matches none (rule 1a).
 
 ## Changelog
+- 1.1.1 description trimmed (v1.13.0)
+- 1.1.0 niche from `## Niche` via the niche map; adjacent matches labelled;
+  no match now yields NO brief rather than a wrong one; brief compressed to
+  a PRIOR DIGEST for the research fan-out (v1.11.0)
 - 1.0.0 initial (v1.7.0 - operator-supplied study library, 11 niches)

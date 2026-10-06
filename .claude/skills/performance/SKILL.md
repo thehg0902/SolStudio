@@ -4,7 +4,7 @@ description: Enforce speed budgets - Core Web Vitals targets, asset weight
   limits, loading strategy for images/video/fonts/scripts. Use in Phase 5
   while wiring assets and as a pre-QA audit. Not image file generation
   (image-optimization does conversion; this skill sets the budgets).
-metadata: {version: 1.0.0, category: frontend, tier: B}
+metadata: {version: 1.1.0, category: frontend, tier: B}
 ---
 # Performance
 
@@ -13,7 +13,7 @@ Local-business sites must load instantly on mid mobile - speed is a
 conversion feature and a retainer selling point.
 
 ## Inputs
-site/, site/assets/, hero-media weight rules.
+output/, output/assets/, hero-media weight rules.
 
 ## Outputs
 Budget-compliant loading setup; numbers recorded in BUILD_STATE.md notes.
@@ -55,11 +55,20 @@ Budget-compliant loading setup; numbers recorded in BUILD_STATE.md notes.
    Lighthouse/PageSpeed available, ask them to run it and paste scores;
    treat unverified LCP/CLS as open QA items, not passes.
 
-## References
-- references/loading-strategy.md
+## Loading order (per page)
+1. Inline nothing except the theme-critical scrim/bg colour if needed.
+2. `<head>`: meta, title, preload the hero poster + heading font, then the
+   stylesheets in contract order (shared/tokens.css, shared/base.css, the
+   page's own style.css).
+3. `defer` shared/main.js and the page's script.js; CDN libs last, deferred.
+4. Below-fold images lazy; iframes (Calendly, maps) lazy via the facade
+   pattern - static placeholder plus click/near-viewport load, implemented
+   by their own skills.
+5. Analytics after window load or on first interaction.
 
 ## Anti-patterns
 - Claiming a Core Web Vitals pass without a measurement to point to.
 
 ## Changelog
+- 1.1.0 loading order inlined from references/ (v1.13.0)
 - 1.0.0 initial

@@ -13,7 +13,7 @@ The first real build burned usage limits too fast. This is the playbook
 for keeping sessions cheap without degrading the site.
 
 ## Inputs
-The current session's loaded context; state/BUILD_STATE.md (resume point).
+The current session's loaded context; system/state/BUILD_STATE.md (resume point).
 
 ## Outputs
 Lower per-session and per-turn token consumption; measurements recorded
@@ -30,6 +30,12 @@ in this skill's changelog.
    audits, long doc digestion) spawn a subagent with an isolated context
    (context: fork) so intermediate output never enters the main window -
    only the conclusion returns.
+3a. Structural containment beats behavioral discipline: ANY inspection
+   loop expected to exceed ~10 tool calls - browser debugging, screenshot
+   hunts, bulk file sweeps - belongs in a worker, not in the main context.
+   Resolving to "be careful" does not survive call 15. The canonical
+   instance is the Phase 1 research fan-out (four workers, capped budgets,
+   fixed-shape reports); the general law is system/contracts/agent-protocol.md.
 4. Append-only state: MEDIA_LOG/QUESTIONS/DECISIONS are kept short and
    append-only - never rewrite them to "tidy up"; never re-read them
    whole when appending.

@@ -4,27 +4,28 @@ description: Convert and compress media for the web - WebP conversion, srcset
   size variants, video re-encode to budget, poster extraction. Use whenever
   files move into assets/ (client photos or generated media). Not for
   choosing what to generate (media-generation).
-metadata: {version: 1.1.0, category: media, tier: C}
+metadata: {version: 1.1.1, category: media, tier: C}
 ---
 # Image Optimization
 
 ## Purpose
-Nothing enters site/assets/ raw. Every file web-ready, budget-compliant,
+Nothing enters output/assets/ raw. Every file web-ready, budget-compliant,
 named per contract.
 
 ## Inputs
-Files from client/assets-intake/ or fresh generations; performance budgets.
+Files from input/assets-intake/ or fresh generations; performance budgets.
 
 ## Outputs
-Optimized files in site/assets/images|video per file-structure contract.
+Optimized files in output/assets/images|video per file-structure contract.
 
 ## Rules
 1. Quality-first ladder (priority law: performance floors first, then
    maximum quality within them). Free transforms ALWAYS run: resize to
    the 1440px display cap, WebP conversion, EXIF strip. The LOSSY level
    adapts: q90 -> q82 -> q75, stepping down ONLY while over budget.
-   Budgets per hosting profile (performance skill rule 1): image
-   300KB/200KB, poster 200KB/150KB (cdn/no-cdn). /ingest implements
+   PER-FILE budgets are owned HERE (page and video totals are the
+   performance skill's, rule 1), split by the same cdn/no-cdn profile:
+   image 300KB/200KB, poster 200KB/150KB. /ingest implements
    this automatically and reports the kept level + headroom. Keep a jpg
    fallback only if a target embed requires it (og:image: jpg/png
    1200x630).
@@ -58,5 +59,6 @@ Optimized files in site/assets/images|video per file-structure contract.
   files.
 
 ## Changelog
+- 1.1.1 per-file budgets stated as owned HERE; page/video totals attributed to performance (v1.13.0)
 - 1.1.0 alpha assets never flattened; PNG explicitly permitted
 - 1.0.0 initial

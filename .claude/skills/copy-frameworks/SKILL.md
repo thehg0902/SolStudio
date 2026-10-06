@@ -4,9 +4,8 @@ description: Structural skeletons for drafting marketing copy - DIC/PAS/HSO, lon
   Lead/Body/Close, hook construction, storytelling beats, formatting rules,
   refinement checklist. Use when drafting ads, emails, social captions, video
   scripts, or landing pages after winners-writing-process is complete. Not for
-  website build copy in Phase 3 (copywriting) or closing sections and
-  objections (objections-and-closes).
-metadata: {version: 1.0.0, category: content, tier: F}
+  website build copy in Phase 3 (copywriting).
+metadata: {version: 1.2.0, category: content, tier: F}
 ---
 
 # Copy Frameworks
@@ -51,8 +50,12 @@ Versatile; best for warm audiences, emails, organic content.
 
 ### Close
 - Introduce the product as the best implementation of the solution
-- CTA (see objections-and-closes skill)
-- Demolish remaining objections after the first CTA
+- CTA: one path forward, one literal instruction ("Reply to this email"),
+  repeated after each proof block, laddered to the reader's trust level
+  (cold -> micro-commitment, warm -> booking, hot -> the sale)
+- Demolish remaining objections after the first CTA: surface each one
+  yourself, then acknowledge -> reframe -> point at the evidence that
+  answers the reframed question. Never leave an objection unspoken.
 
 ## Hooks
 
@@ -90,14 +93,40 @@ Some products don't solve an active problem — they let the reader satisfy a ba
 
 Match tone to the avatar's self-perspective. For frustrated, hardworking audiences: "you deserve better — your hard work should be paying off." Give them a taste of the desire early; never lecture them with the hard truth head-on.
 
-## Refinement Checklist
+## Drafting Discipline (filter OFF)
+
+Drafting and judging are separate modes — mixing them is what stalls a
+draft and flattens it into safe, generic copy.
+
+- First drafts are supposed to be rough: optimize for flow, ideas, and
+  volume, not quality. Nothing is final; explore several directions.
+- Always produce multiple hook/headline variants per asset, not one.
+- Two valid strategies: **all-at-once** for short-form (ad, email, short
+  script) — write it start to finish in one pass; **piece-by-piece** for
+  long-form (sales/landing pages) — draft the authority block, the
+  curiosity block, the desire block separately, then assemble one journey.
+- If nothing usable is coming out, the problem is upstream: return to the
+  WWP (see winners-writing-process weak-draft rule), don't grind.
+
+## Refinement Checklist (filter back ON)
 
 First drafts are always rough. Refinement is where copy is made.
+Run **at least 2–3 passes. Never ship the first draft** — and starting
+over is a valid outcome of a pass.
 
 1. Kill the three sins: **confusing · boring · irrelevant**
 2. Relevance must be *now* — aimed at them today, not last month, not someday
-3. Physical reset (walk away, train, then re-read cold)
+3. Distance before judging: physical reset (walk away, train, re-read cold); overnight when the schedule allows — more distance, more caught
 4. Re-read *as the avatar*: what movie plays in their head line by line?
-5. Get outside readers who match the avatar to react
-6. For each line ask: what effect does this create in the reader's mind, and is it the effect I want?
-7. OODA the result: Observe → Orient → Decide → Act, on repeat until it converts
+5. Read it **out loud** — the mouth catches awkward rhythm and clunk the eye skips
+6. Get outside readers who match the avatar to react; a second pair of eyes (subagent or human) flags confusion and salesiness — it advises, the writer judges
+7. For each line ask: what effect does this create in the reader's mind, and is it the effect I want?
+8. OODA the result: Observe → Orient → Decide → Act, on repeat until it converts
+
+## Changelog
+- 1.2.0 close/CTA guidance inlined after objections-and-closes was parked to system/sales-skills/ (v1.13.0)
+- 1.1.0 drafting discipline (filter off, hook variants, all-at-once vs
+  piece-by-piece) + refinement additions (read aloud, distance, >=2-3
+  passes, never ship draft 1), merged from the operator's WWP module
+  guide (v1.11.1)
+- 1.0.0 initial (v1.8.0 - distilled from the operator's TRW/HU archives)

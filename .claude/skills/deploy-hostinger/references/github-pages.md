@@ -7,19 +7,20 @@ Repo Settings -> Pages -> "Deploy from a branch", pick branch + directory,
 save. Pages builds and serves within ~1 minute; the URL appears on the
 same screen (`https://<user>.github.io/<repo>/`).
 
-## Serving the site/ subdir - two options
+## Serving the output/ subdir - two options
 Pages serves a directory, and only offers `/` (root) or `/docs` of the
-chosen branch. The deliverable lives in `site/`, so:
+chosen branch. The deliverable lives in `output/`, so:
 
 1. **The `deploy` branch (RECOMMENDED - already generated):** the same
-   site-only branch scripts/deploy-split.sh produces for Hostinger works
-   unchanged for Pages - its ROOT contains the CONTENTS of site/ (zero
+   site-only branch system/scripts/deploy-split.sh produces for Hostinger works
+   unchanged for Pages - its ROOT contains the CONTENTS of output/ (zero
    OS files, proven on every run). Update flow per deploy: /qa then
-   `bash scripts/deploy-split.sh`. Pages setting: branch `deploy`,
+   `bash system/scripts/deploy-split.sh`. Pages setting: branch `deploy`,
    directory `/`. One deploy mechanism for both hosts.
 
-2. **docs/ convention (simpler, noisier):** rename/copy the deliverable
-   into `docs/` on the deploy branch and point Pages at `/docs`. One
+2. **`/docs` convention (simpler, noisier):** rename/copy the deliverable
+   into a `docs/` folder ON THE DEPLOY BRANCH (nothing to do with the OS's
+   own system/docs/) and point Pages at `/docs`. One
    branch, but the repo carries a second copy of the site and the "docs"
    name is misleading. Acceptable for quick demos; not preferred.
 

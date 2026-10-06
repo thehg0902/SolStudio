@@ -12,7 +12,7 @@ metadata: {version: 1.0.0, category: security, tier: E}
 A static site has a small attack surface - keep it small.
 
 ## Inputs
-site/, third-party embeds in use, Hostinger Apache hosting (.htaccess).
+output/, third-party embeds in use, Hostinger Apache hosting (.htaccess).
 
 ## Outputs
 .htaccess with headers; integrity attributes; a pass recorded in

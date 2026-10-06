@@ -1,21 +1,37 @@
 #!/usr/bin/env python3
 """Agency OS automated QA gate. Run from repo root. Exit 1 on any FAIL."""
-import re, sys, pathlib
+import html as _html, re, sys, pathlib
 
 ROOT = pathlib.Path(".")
-SITE = ROOT / "site"
+SITE = ROOT / "output"
 fails, warns = [], []
 
 def fail(msg): fails.append(msg)
 def warn(msg): warns.append(msg)
 
-# scan all of site/ recursively (root page, shared/, every page folder)
+# scan all of output/ recursively (root page, shared/, every page folder)
 html_files = sorted(SITE.rglob("*.html"))
 css_files  = sorted(SITE.rglob("*.css"))
 js_files   = sorted(SITE.rglob("*.js"))
 
 if not html_files:
-    fail("no HTML files in site/ - nothing to QA")
+    fail("no HTML files in output/ - nothing to QA")
+
+# Deferred fact confirmations (v1.11.0): Phase 0 stopped blocking on the
+# confirmation table, so this is where that debt is collected. Any row still
+# open under the exact heading is a FAIL - unverified facts cannot ship.
+DEFERRED_HEADING = "Fact confirmations (deferred from Phase 0)"
+qfile = ROOT / "system" / "state" / "QUESTIONS.md"
+if qfile.exists():
+    qtext = re.sub(r"<!--.*?-->", "", qfile.read_text(encoding="utf-8",
+                   errors="replace"), flags=re.S)
+    dsec = re.search(r"^##\s*" + re.escape(DEFERRED_HEADING) + r"\s*$(.*?)(?=^##\s|\Z)",
+                     qtext, re.M | re.S)
+    if dsec:
+        open_rows = re.findall(r"^\s*-\s*\[ \]\s*(.+)$", dsec.group(1), re.M)
+        if open_rows:
+            fail(f"system/state/QUESTIONS.md: {len(open_rows)} deferred fact "
+                 f"confirmation(s) still open - first: {open_rows[0][:70]}")
 
 for f in html_files + css_files + js_files:
     text = f.read_text(encoding="utf-8", errors="replace")
@@ -26,7 +42,7 @@ for f in html_files + css_files + js_files:
 for f in html_files:
     text = f.read_text(encoding="utf-8", errors="replace")
     # local refs exist - resolved relative to each file's own folder, so
-    # "../assets/..." from a page folder and "assets/..." from site/ root
+    # "../assets/..." from a page folder and "assets/..." from output/ root
     # both pass when the target exists. Folder refs (about/) hit index.html.
     for m in re.finditer(r'(?:src|href)="([^"#][^":]*?)"', text):
         ref = m.group(1)
@@ -91,7 +107,7 @@ if len(html_files) > 1:
 # profile, anything else / unknown = the tighter no-cdn set (fail-safe).
 def hosting_profile():
     try:
-        txt = (ROOT / "client" / "client.md").read_text(encoding="utf-8")
+        txt = (ROOT / "input" / "client.md").read_text(encoding="utf-8")
         txt = re.sub(r"<!--.*?-->", "", txt, flags=re.S)  # docs comments lie
         txt = re.sub(r"\{[^{}]*\}", "", txt)              # {operator comments}
         m = re.search(r"^[-*]?[ \t]*Hosting plan[ \t]*:[ \t]*(.+)$", txt, re.M | re.I)
@@ -135,10 +151,78 @@ for f in html_files:
     elif video_bytes > HERO_CAP * 0.8:
         warn(f"{f}: video weight {video_bytes / MB:.1f}MB is >80% of cap [{PROFILE}]")
 
+# title/meta audit (seo-technical rules 1, 1a, 6). Rule 6 says "no
+# duplicate titles/descriptions (qa should catch)" - this is that catch.
+# Length is a WARN not a FAIL: the 60/155 figures are SERP display
+# guidelines, and rule 1a step (c) legitimately ships a longer title when
+# the operator's own keyword is that long. A warn keeps a skipped
+# overflow ladder visible without blocking a deliberate choice.
+titles, descs = {}, {}
+for f in html_files:
+    text = f.read_text(encoding="utf-8", errors="replace")
+    tm = re.search(r"<title\b[^>]*>(.*?)</title>", text, re.S | re.I)
+    if not tm or not tm.group(1).strip():
+        fail(f"{f}: missing <title>")
+    else:
+        # unescape first: "&amp;" is ONE rendered character, and business
+        # names with "&" are common - counting the entity inflates by 4.
+        t = _html.unescape(re.sub(r"\s+", " ", tm.group(1))).strip()
+        titles.setdefault(t, []).append(f)
+        if len(t) > 60:
+            warn(f"{f}: <title> {len(t)} chars (>60) - apply the seo-technical "
+                 f"rule 1a overflow ladder: {t[:50]}...")
+    dm = re.search(r'<meta[^>]+name="description"[^>]+content="([^"]*)"', text, re.I)
+    if dm:
+        d = _html.unescape(dm.group(1)).strip()
+        descs.setdefault(d, []).append(f)
+        if len(d) > 155:
+            warn(f"{f}: meta description {len(d)} chars (>155)")
+for t, fs in titles.items():
+    if len(fs) > 1:
+        fail(f"duplicate <title> on {len(fs)} pages ({', '.join(str(x) for x in fs)}): {t[:60]}")
+for d, fs in descs.items():
+    if len(fs) > 1:
+        fail(f"duplicate meta description on {len(fs)} pages ({', '.join(str(x) for x in fs)})")
+
+# duplicate-content check: near-clone <main> body text across pages is the
+# main risk site-architecture's service+location matrix introduces (rule
+# 1c) - cloned pages (e.g. one paragraph with only the city name swapped)
+# read as thin/spam content to search engines. Word-shingle Jaccard, not
+# a character-level ratio: local-business pages legitimately share a lot
+# of VOCABULARY ("serving", "same-day", "licensed") without being
+# duplicates, and raw character similarity false-positives on that shared
+# wording. 5-word shingles only match on repeated SEQUENCES, so a single
+# swapped word (the city) still scores near-identical while independently
+# written pages score low despite sharing individual words. Compares
+# <main> text only (header/footer/nav are legitimately shared and already
+# checked separately above) and skips short/stub content.
+def main_text(html):
+    m = re.search(r"<main\b[^>]*>(.*?)</main>", html, re.S)
+    body = m.group(1) if m else html
+    return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", body)).strip().lower()
+
+def shingles(text, n=5):
+    words = text.split()
+    return {tuple(words[i:i + n]) for i in range(len(words) - n + 1)}
+
+if len(html_files) > 2:
+    bodies = [(f, main_text(f.read_text(encoding="utf-8", errors="replace")))
+              for f in html_files]
+    shingled = [(f, shingles(t)) for f, t in bodies if len(t.split()) >= 80]
+    for i in range(len(shingled)):
+        f1, s1 = shingled[i]
+        for f2, s2 in shingled[i + 1:]:
+            if not s1 or not s2: continue
+            jaccard = len(s1 & s2) / len(s1 | s2)
+            if jaccard > 0.5:
+                fail(f"{f1} and {f2}: main content {jaccard:.0%} overlapping "
+                     f"5-word sequences - looks cloned, not unique per "
+                     f"service/location")
+
 # media log consistency. Cell indices assume the 9-column contract table
 # with leading pipe: split("|") -> [ '', id, date, type, model, prompt,
 # credits, approved, file, status, '' ] so cells[8] = file column.
-log = ROOT / "state" / "MEDIA_LOG.md"
+log = ROOT / "system" / "state" / "MEDIA_LOG.md"
 if log.exists():
     for line in log.read_text().splitlines():
         if "| generated" in line or "| in-use" in line:

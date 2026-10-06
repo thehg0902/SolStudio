@@ -1,13 +1,12 @@
 ---
 name: winners-writing-process
-description: Mandatory market-research diagnostic before any marketing asset - WWP
-  questions, awareness/sophistication diagnosis, desire/certainty/trust
-  scoring, MR template, avatar, top player analysis. Use when researching a
-  niche, prospect, or client, planning a funnel, or before writing any
-  marketing copy (ads, emails, scripts, landing pages). Not for the pre-built
-  niche psychology library (audience-research) or drafting the asset itself
-  (copy-frameworks).
-metadata: {version: 1.0.0, category: process, tier: F}
+description: Mandatory research diagnostic before any marketing asset - WWP
+  questions, awareness and sophistication diagnosis, desire/certainty/trust
+  scoring, avatar, top-player modeling. Use when researching a niche or
+  prospect, planning a funnel, or before writing any marketing copy.
+  Not for the cached niche library (audience-research) or drafting the
+  asset (copy-frameworks).
+metadata: {version: 1.2.1, category: process, tier: F}
 ---
 
 # Winners Writing Process (WWP)
@@ -153,11 +152,33 @@ Map the real path from stranger → paying customer:
 - Would they actively search for this, or be interrupted by content/ads? (High-intent vs passive — see local-seo-gbp skill)
 - Questions for existing customers: What were you looking for before you found us? How did you find us? Why us over competitors? What makes this unique to you?
 
-## Top Player Analysis
+## Top Player Analysis — Modeling (the master key)
 
-- Pull winning ads from ad libraries (Meta Ad Library, Google search results for target keywords)
-- For each top player: How do they grab attention? How do they establish authority? Where do they amplify pain/curiosity? What formula are they running?
-- Model the winning structure; swap in the client's pieces. Model, don't clone.
+Inventing a persuasion sequence from scratch is an untested hypothesis.
+Modeling starts from something already proven:
+
+1. Find 2–3 pieces of copy that already achieved the SAME result you
+   want (the click, the booked call, the sale) — from top players in the
+   niche AND from other markets using a similar format. Sources: Meta Ad
+   Library, Google results for target keywords, winning landing pages.
+2. Break each one down line by line: how does it grab attention? Where
+   and how does it build authority? When does it ramp curiosity and
+   pain? What is the exact sequence?
+3. Extract each skeleton; pick the one that best fits the reader's
+   awareness level and sophistication stage.
+4. Swap their specifics — promise, timeframe, identity, market — for the
+   client's, keeping the proven structure. Model, don't clone; add or
+   remove elements only after the skeleton is in place.
+
+The pre-built skeletons in copy-frameworks are the fallback; a skeleton
+modeled live from what is winning in the actual market beats them. This
+is also the answer to WWP question 4: the "steps" are read out of copy
+that already works, not invented.
+
+**Weak-draft rule:** if a draft comes out generic or flat, the research
+was thin — the fix is to redo the WWP stages (more verbatim language,
+tighter diagnosis, better modeled skeleton), never to push harder on the
+draft.
 
 ## Niche Knowledge Vault (per new niche)
 
@@ -174,6 +195,30 @@ Answer before the sales call:
 - "Guide me through the Winners Writing Process for my [funnel type] for [product/service]."
 - Rule: AI accelerates structure and drafts. The human-to-human research (reading real reviews, real comments, real customer language) is never delegated.
 
+## Automation boundary (what agents may and may not do)
+
+The website-build pipeline runs this diagnostic as a parallel agent fan-out
+at Phase 1. That does not override the rule above — it narrows what "the
+research" means, so read the split precisely:
+
+- **Delegable: retrieval and clustering of already-public language.** An
+  agent opening the same 1-star review page a human would open is a faster
+  pair of eyes, not different epistemics. It returns the phrases verbatim,
+  each with its source and star rating, so a human can spot-check in seconds.
+- **Not delegable, enforced structurally:** any claim *about this business*.
+  Only material sourced from the client (their paste, their Overrides,
+  their own answers) may become a published claim — everything an agent finds
+  steers angle, order, emphasis, and vocabulary, and nothing more. A number,
+  price, guarantee, or credential that is not client-sourced ships as a
+  marked placeholder plus a question.
+- **Not delegable: judgment.** Whether a phrase is real customer voice or
+  marketing residue, and whether the avatar rings true, stay human calls.
+  That is why the automated brief ends with a short human-check list.
+- **Never fabricated.** Absence of evidence produces an omitted section and a
+  `not-found:` line — never filler. This single rule is what makes the
+  automation compatible with the doctrine: a machine that cannot invent
+  cannot launder a guess into research.
+
 ## Definition of Done
 
 - [ ] Business objective defined and measurable
@@ -185,3 +230,13 @@ Answer before the sales call:
 - [ ] Roadblock → Solution → Product chain stated
 - [ ] Top player analysis complete with modeled structure
 - [ ] Only now: draft copy (see copy-frameworks skill)
+
+## Changelog
+- 1.2.1 description trimmed (v1.13.0)
+- 1.2.0 modeling upgraded to the full master-key method (2-3 skeletons,
+  line-by-line breakdown, swap-keep-structure) + weak-draft rule, merged
+  from the operator's WWP module guide (v1.11.1)
+- 1.1.0 automation boundary: what the Phase 1 agent fan-out may retrieve vs
+  what stays human, and why "never fabricated" preserves the doctrine
+  (v1.11.0)
+- 1.0.0 initial (v1.8.0 - distilled from the operator's TRW/HU archives)

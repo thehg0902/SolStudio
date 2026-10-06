@@ -8,6 +8,6 @@ Run the pre-delivery QA gate.
 3. Then perform the manual review in the qa-review skill (read it now) -
    the resize pass is covered by step 2; focus on facts, copy, and
    click-paths.
-4. Write results to state/BUILD_STATE.md notes. Mark phase 6 done ONLY if
+4. Write results to system/state/BUILD_STATE.md notes. Mark phase 6 done ONLY if
    the script passes, visual QA passes, and manual review has no
    criticals. Otherwise list what blocks, mark phase 6 blocked.

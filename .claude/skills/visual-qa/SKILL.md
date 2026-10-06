@@ -1,12 +1,11 @@
 ---
 name: visual-qa
-description: Render the built site in a local browser preview and debug it
-  VISUALLY - layout at 360/768/1280, spacing rhythm, design-rationale and
-  vibe conformance, console errors, reduced-motion. Use via /visual-qa in
-  Phase 6 (after the check script passes) and after any retainer edit that
-  touches layout. Not for code-level checks (qa-review script) or WCAG
-  depth (accessibility).
-metadata: {version: 1.0.0, category: qa, tier: A}
+description: Render the built site in a local browser and debug it VISUALLY
+  - layout at 360/768/1280, spacing rhythm, design-rationale and vibe
+  conformance, console errors, reduced motion. Use via /visual-qa in
+  Phase 6 and after any retainer edit touching layout. Not code-level
+  checks (qa-review) or WCAG depth (accessibility).
+metadata: {version: 1.1.1, category: qa, tier: A}
 ---
 # Visual QA
 
@@ -15,16 +14,23 @@ Catch what only eyes catch: broken layout, wrong rhythm, lost vibe.
 Debugging shifts from code-debug to visual/layout/vibe-debug.
 
 ## Inputs
-Built site/, the Phase 2 design rationale in state/DECISIONS.md, vibe
-references in client/assets-intake/vibe/, .claude/launch.json ("site"
+Built output/, the Phase 2 design rationale in system/state/DECISIONS.md, vibe
+references in input/assets-intake/vibe/, .claude/launch.json ("site"
 server config).
 
 ## Outputs
 Fixes applied; a VISUAL QA block (per-page PASS/issues) in
-state/BUILD_STATE.md notes.
+system/state/BUILD_STATE.md notes.
 
 ## Rules
-1. Serve site/ with the preview server (launch config "site"). Never
+0. When invoked PRE-GATE (not via /visual-qa), run INSIDE a worker per
+   system/contracts/agent-protocol.md: read-only, refute-framed, returning the
+   report block. Screenshots at 360/768/1280 of the SERVED page are
+   mandatory evidence; DOM metrics, computed styles, and bounding boxes
+   may corroborate but never constitute a pass - they cannot observe
+   paint. If capture is unavailable on the machine, return
+   `status: partial` and the master presents the claim UNVERIFIED.
+1. Serve output/ with the preview server (launch config "site"). Never
    file:// - relative folder URLs must behave as deployed.
 2. Per page, per breakpoint - 360 FIRST (the phone is the primary
    product; audit the mobile-polish checklist there: thumb-zone CTA,
@@ -42,7 +48,7 @@ state/BUILD_STATE.md notes.
    intent, the ONE distinctive element: is each visibly present? A
    generic-looking page with correct code is a FAIL here. The home
    page additionally gets compared against the APPROVED
-   preview/layout-preview.html: same section order, spacing rhythm,
+   system/preview/layout-preview.html: same section order, spacing rhythm,
    and animation behavior - unexplained deviations are findings.
 5. Vibe conformance: compare the rendered home page against the vibe
    references ONCE (they were distilled at Phase 2 - this is the final
@@ -65,4 +71,7 @@ state/BUILD_STATE.md notes.
   optional polish - it is the vibe contract.
 
 ## Changelog
+- 1.1.1 description trimmed (v1.13.0)
+- 1.1.0 rule 0: pre-gate invocations run inside a worker; screenshots at
+  three widths are mandatory evidence, DOM metrics never a pass (v1.11.0)
 - 1.0.0 initial (v1.4.0 Clear Sight)

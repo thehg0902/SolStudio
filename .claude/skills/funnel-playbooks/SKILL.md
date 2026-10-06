@@ -1,12 +1,11 @@
 ---
 name: funnel-playbooks
-description: Client-acquisition funnel selection and execution - selection matrix, Google
-  Ads lead-gen, Meta intro-offer, and organic social DM playbooks, project
-  pricing guidance, scaling rules. Use when choosing or designing an
-  acquisition funnel, scoping a discovery project, or executing ad/DM
-  campaigns for a client. Not for the market research behind the funnel
+description: Client-acquisition funnel selection and execution - selection
+  matrix, Google Ads lead-gen, Meta intro-offer, and organic DM playbooks,
+  with project pricing and scaling rules. Use when choosing or running an
+  acquisition funnel for a client. Not the research behind it
   (winners-writing-process) or local rankings (local-seo-gbp).
-metadata: {version: 1.0.0, category: sales, tier: F}
+metadata: {version: 1.0.1, category: sales, tier: F}
 ---
 
 # Funnel Playbooks
@@ -97,3 +96,7 @@ Discovery projects exist to generate a quick win, earn trust, and set up the lar
 - **Two-step lead generation**: step 1, cheap easy-consumption ad to identify interested people; step 2, advertise the offer to the interactors
 - The irresistible offer: ease them in with low commitment + high value
 - Once a funnel wins: raise volume, then add the next funnel — never both changes at once
+
+## Changelog
+- 1.0.1 description trimmed (v1.13.0)
+- 1.0.0 initial

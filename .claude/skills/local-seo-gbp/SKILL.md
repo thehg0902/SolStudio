@@ -1,12 +1,11 @@
 ---
 name: local-seo-gbp
-description: Local search strategy - Google Business Profile optimization, review
-  generation systems, local rankings, on-page local SEO audits, SEO-vs-paid
-  recommendation logic. Use for GBP work, review systems, ranking a local
-  service business, or deciding SEO vs ads for a client. Not for on-site
-  meta/schema implementation in the build (seo-technical) or map embeds and
-  site NAP blocks (maps-gbp).
-metadata: {version: 1.0.0, category: seo, tier: F}
+description: Local search strategy - Google Business Profile optimization,
+  review generation, local rankings, and the SEO-vs-paid recommendation.
+  Use for GBP work, review systems, or ranking a local service business.
+  Not on-site meta and schema implementation (seo-technical) or map embeds
+  and NAP blocks (maps-gbp).
+metadata: {version: 1.0.1, category: seo, tier: F}
 ---
 
 # Local SEO & Google Business Profile
@@ -76,3 +75,7 @@ Rules: one-click direct link, send within 24–48h of service, customize wording
 ## Tooling
 
 Keyword Planner (volume/competition) · Semrush (keywords, competitors) · GMB Everywhere (GBP audits, competitor categories) · AnswerThePublic (question mining) · Seobility (site audits) · AdWords Wrapper (phrase/exact wrapping — never broad)
+
+## Changelog
+- 1.0.1 description trimmed (v1.13.0)
+- 1.0.0 initial
