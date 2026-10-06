@@ -14,7 +14,7 @@ Started: 2026-07-10
 | 5     | build        | done    | -                         | 2026-07-10 |
 | 6     | qa           | done    | scripts + deferred facts  | 2026-07-11 |
 | 7     | deploy       | done    | HUMAN: confirm deploy     | 2026-10-06 |
-| 8     | handoff      | pending | -                         | -         |
+| 8     | handoff      | done    | -                         | 2026-10-06 |
 
 status: pending | in-progress | blocked | done
 Notes:
@@ -138,3 +138,10 @@ Notes:
   staging branches NOT touched. client.md re-shaped to v3 (Niche + Special
   requests sections; Hero story left empty, intro-loop override governs).
   Phase statuses carried over unchanged. Next: Phase 8 handoff.
+- 2026-10-06 Phase 8 IN PROGRESS: system/docs/HANDOFF.md written (live URL, 5-page
+  site map, hosting/domain names, change-request format, deferred-content list,
+  credentials checklist names-only). 3 [PLACEHOLDER]s open -> QUESTIONS.md
+  'Handoff questions': hosting provider, retainer terms, response time.
+- 2026-10-06 Phase 8 DONE: operator answered the 3 handoff questions in-chat
+  (Hostinger Business; no retainer -> section dropped; response within 12 hours).
+  HANDOFF.md has 0 placeholders. WORKFLOW COMPLETE.

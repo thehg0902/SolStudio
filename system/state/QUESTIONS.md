@@ -70,3 +70,14 @@
       exceptionalism." Anything more for an About-style blurb (who's behind
       the studio, years working, what sparked it)? Optional; enriches copy.
       A: (pending)
+
+## Handoff questions (Phase 8)
+<!-- Rendered as [PLACEHOLDER: ...] in system/docs/HANDOFF.md until answered. -->
+- [x] Q: Hosting provider + plan name serving solforged.net from the
+      `deploy` branch (e.g. Hostinger Business)?
+      A: "Hostinger business plan" (operator, in-chat 2026-10-06)
+- [x] Q: Retainer scope + monthly terms to state in the handoff (or "none -
+      own studio site, drop the section")?
+      A: "none" (operator, in-chat 2026-10-06) - section dropped
+- [x] Q: Response-time commitment for change requests (e.g. 2 business days)?
+      A: "within 12 hours" (operator, in-chat 2026-10-06)

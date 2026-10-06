@@ -8,3 +8,4 @@
      outcome = passed | reworked, defects/calls = "-".
      Derived metric: operator round-trips per gate = sum(gate rounds) /
      count(gate lines). Never rewrite a line; never turn this into prose. -->
+2026-10-06 | 8 | gate | handoff-facts | 1 | - | - | passed
