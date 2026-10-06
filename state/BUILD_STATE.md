@@ -13,7 +13,7 @@ Started: 2026-07-10
 | 4     | media        | done    | HUMAN: fill slots/approve | 2026-07-10 |
 | 5     | build        | done    | -                         | 2026-07-10 |
 | 6     | qa           | done    | scripts must pass         | 2026-07-11 |
-| 7     | deploy       | in-progress | HUMAN: confirm deploy | -         |
+| 7     | deploy       | done    | HUMAN: confirm deploy     | 2026-10-06 |
 | 8     | handoff      | pending | -                         | -         |
 
 status: pending | in-progress | blocked | done
@@ -125,3 +125,7 @@ Notes:
   launch.json), deploy 4152c51->9dbc77e (deploy-split.sh, gate passed, fast-forward),
   staging already current at 1af4162 (tree a112a09 identical to deploy's — verified).
   All three origin branches now serve the same site content.
+- 2026-10-06 Phase 7 DONE: operator confirmed in-chat that hosting is connected to the
+  `deploy` branch (serving 9dbc77e, the QA-gated dock build). Live-site check from the
+  cloud session not possible (sandbox proxy blocks solforged.net) — operator confirmation
+  recorded as the gate. Next: Phase 8 handoff.
